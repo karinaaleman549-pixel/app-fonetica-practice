@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Práctica de Fonética</title>
+<meta name="description" content="Práctica de transcripción fonética: lee el IPA americano (Oxford) y escribe la palabra. Gana XP, sube de rango y desbloquea premios.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Concurso de Fonética: practica y gana premios">
+<meta property="og:description" content="Lee símbolos IPA y escribe la palabra en inglés. Gana XP, mantén tu racha y desbloquea trofeos.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Concurso de Fonética: practica y gana premios">
+<meta name="twitter:description" content="Practica la transcripción de IPA americano (Oxford Dictionary) a escritura.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --card:#ffffff; --text:#1a2233; --muted:#6b7480;
+  --accent:#123E8C; --accent2:#F5B400; --on-accent2:#1a2233;
+  --red:#C8102E; --good:#2e9e5b; --bad:#C8102E;
+  --border:#e1e5ec; color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
+*, *::before, *::after{box-sizing:border-box;}
+body{
+  height:100%; margin:0; background:var(--bg); color:var(--text);
+  font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+.wrap{max-width:640px; margin:0 auto; padding:18px 16px 40px; width:100%;}
+.brandbar{height:6px; border-radius:6px; margin:0 0 16px;
+  background:linear-gradient(90deg, var(--accent) 0%, var(--accent) 33%, var(--accent2) 33%, var(--accent2) 66%, var(--red) 66%, var(--red) 100%);}
+h1{font-size:1.3rem; font-weight:700; margin:4px 0 2px; text-align:center;}
+.sub{color:var(--muted); text-align:center; font-size:.85rem; margin-bottom:16px;}
+
+/* ---------- Home ---------- */
+#homeScreen{display:flex; flex-direction:column; gap:14px;}
+.hero{text-align:center; padding:6px 0 0;}
+.herotrophy{font-size:3.2rem; line-height:1; animation:bob 2.4s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-6px) rotate(4deg);}}
+.hero h1{font-size:1.45rem; margin:8px 0 4px;}
+.greet{color:var(--muted); font-size:.9rem;}
+.chips{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+.chip{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:10px 4px; text-align:center;}
+.chip .big{font-size:1.1rem; font-weight:700; display:block; line-height:1.2;}
+.chip .lbl{font-size:.66rem; color:var(--muted); display:block; margin-top:2px;}
+.daily{background:linear-gradient(135deg, rgba(245,180,0,.18), rgba(200,16,46,.10)); border:1px solid var(--border);
+  border-radius:14px; padding:14px 16px; font-size:.85rem; line-height:1.45;}
+.daily b{color:var(--accent);}
+.homecard{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px 18px;}
+.homecard h2{font-size:1.05rem; margin:0 0 12px; text-align:center;}
+.steps{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+.steps li{display:flex; gap:12px; align-items:flex-start; font-size:.88rem; line-height:1.55;}
+.stepnum{flex:0 0 28px; width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem;}
+.stepnum.alt{background:var(--red);}
+.steptext{flex:1 1 auto; min-width:0;}
+.steptext b{color:var(--accent); font-weight:600;}
+.note{margin-top:16px; padding:12px; border-radius:10px; background:var(--bg); border:1px solid var(--border);
+  font-size:.82rem; line-height:1.5;}
+.note b{color:var(--red);}
+.ex{display:inline-block; margin-top:4px; padding:4px 10px; border-radius:8px; background:var(--bg); border:1px solid var(--border);}
+.starttip{margin-top:12px; padding:12px; border-radius:10px; background:var(--bg); border:1px solid var(--border);
+  font-size:.8rem; color:var(--muted); text-align:center; line-height:1.4;}
+.startbtn{display:block; width:100%; padding:15px; border-radius:12px; border:none;
+  background:var(--accent); color:#fff; font-size:1.02rem; font-weight:700; cursor:pointer;}
+.startbtn:active{transform:scale(.98);}
+.ghostbtn{display:block; width:100%; padding:12px; border-radius:12px; border:1px solid var(--border);
+  background:var(--card); color:var(--text); font-size:.9rem; font-weight:600; cursor:pointer;}
+
+/* ---------- Study ---------- */
+#studyScreen{display:none;}
+.topbar{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+.backbtn{background:var(--accent); border:none; color:#fff; font-size:.9rem; font-weight:700; cursor:pointer; padding:10px 18px; border-radius:24px; box-shadow:0 2px 8px rgba(0,0,0,.18);}
+.backbtn:active{transform:scale(.96);}
+.prizebtn{background:var(--card); border:1px solid var(--border); border-radius:20px; color:var(--text);
+  font-size:.78rem; font-weight:600; cursor:pointer; padding:6px 12px;}
+
+.hud{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:10px 12px; margin-bottom:12px;}
+.hudrow{display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:.8rem;}
+.hudrow b{font-weight:700;}
+.rankname{font-weight:700; color:var(--accent);}
+.xpbar{height:8px; background:var(--border); border-radius:5px; overflow:hidden; margin:8px 0 4px;}
+.xpfill{height:100%; width:0%; background:linear-gradient(90deg,var(--accent2),var(--red)); transition:width .4s;}
+.xptext{font-size:.7rem; color:var(--muted); display:flex; justify-content:space-between;}
+
+.phasebar{display:flex; gap:8px; margin-bottom:10px;}
+.phase{flex:1; padding:8px 4px; text-align:center; border-radius:10px; background:var(--card);
+  border:1px solid var(--border); font-weight:600; font-size:.85rem; cursor:pointer; color:var(--muted); line-height:1.25;}
+.phase small{display:block; font-weight:500; font-size:.68rem; opacity:.85;}
+.phase.active{background:var(--red); color:#fff; border-color:var(--red);}
+
+.tabs{display:flex; gap:8px; margin-bottom:10px;}
+.tab{flex:1; padding:10px; text-align:center; border-radius:10px; background:var(--card);
+  border:1px solid var(--border); font-weight:600; font-size:.9rem; cursor:pointer; color:var(--muted);}
+.tab.active{background:var(--accent); color:#fff; border-color:var(--accent);}
+
+.modebar{display:flex; gap:8px; margin-bottom:14px;}
+.mode{flex:1; padding:8px; text-align:center; border-radius:8px; background:transparent;
+  border:1px solid var(--border); font-size:.82rem; cursor:pointer; color:var(--text);}
+.mode.active{background:var(--accent2); color:var(--on-accent2); border-color:var(--accent2); font-weight:600;}
+
+.card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 20px 24px;
+  text-align:center; min-height:180px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative;}
+.card.pop{animation:cardpop .35s;}
+.card.shake{animation:shake .35s;}
+@keyframes cardpop{0%{transform:scale(1);}40%{transform:scale(1.03);}100%{transform:scale(1);}}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+.eje:empty{display:none;}
+.eje{font-size:.72rem; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:3px 10px; line-height:1.3;}
+.combo{position:absolute; top:10px; right:12px; font-size:.78rem; font-weight:700; color:var(--red); display:none;}
+.ipa{font-size:1.6rem; letter-spacing:.5px; word-break:break-word;}
+.ipa.long{font-size:1.25rem;}
+.ipa.sent{text-align:left; align-self:stretch; word-spacing:.22em; line-height:1.55;}
+.answer.sent{text-align:left; align-self:stretch; font-size:1.1rem; line-height:1.45;}
+.answer{font-size:1.25rem; font-weight:700; color:var(--accent); min-height:1.6rem;}
+.hint{color:var(--muted); font-size:.8rem;}
+.xppop{position:absolute; left:50%; top:30%; transform:translateX(-50%); font-weight:800; font-size:1.2rem; color:var(--good);
+  pointer-events:none; animation:xpup 1.1s ease-out forwards;}
+@keyframes xpup{0%{opacity:0; transform:translate(-50%,10px);}20%{opacity:1;}100%{opacity:0; transform:translate(-50%,-40px);}}
+
+.btnrow{display:flex; gap:10px; margin-top:16px;}
+button.big{flex:1; padding:12px 6px; border-radius:10px; border:none; font-size:.95rem; font-weight:600; cursor:pointer;}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-secondary{background:var(--card); color:var(--text); border:1px solid var(--border) !important;}
+
+.quizbox{margin-top:14px;}
+input[type=text]{width:100%; padding:12px; font-size:1rem; border-radius:10px; border:1px solid var(--border);
+  background:var(--bg); color:var(--text); box-sizing:border-box;}
+.feedback{margin-top:10px; font-weight:600; text-align:center; min-height:1.3rem;}
+.feedback.good{color:var(--good);}
+.feedback.bad{color:var(--bad);}
+
+.cabinet #cabinetClose,.cabinet #tipsClose{position:sticky; bottom:0; box-shadow:0 -10px 14px var(--card);}
+.infohead{margin:26px 0 4px; text-align:center; font-weight:700; color:var(--accent); font-size:1.02rem;}
+.stats span{white-space:nowrap;}
+.stats{display:flex; flex-wrap:wrap; justify-content:space-between; margin-top:18px; font-size:.85rem; color:var(--muted); gap:8px;}
+.stats b{color:var(--text);}
+.progressbar{height:6px; background:var(--border); border-radius:3px; overflow:hidden; margin-bottom:16px;}
+.progressfill{height:100%; background:var(--accent); width:0%; transition:width .3s;}
+.resetlink.armed{color:var(--red); font-weight:700;}
+.resetlink{display:block; padding:10px; text-align:center; margin-top:18px; color:var(--muted); font-size:.78rem; text-decoration:underline; cursor:pointer;}
+
+/* ---------- Modal, vitrina, toast, confetti ---------- */
+.overlay{position:fixed; inset:0; background:rgba(10,14,24,.62); display:none; align-items:center; justify-content:center;
+  z-index:50; padding:20px;}
+.overlay.show{display:flex;}
+.modal{background:var(--card); border-radius:20px; padding:26px 22px; max-width:340px; width:100%; text-align:center;
+  animation:modalin .35s; max-height:86vh; overflow:auto;}
+@keyframes modalin{0%{transform:scale(.8); opacity:0;}100%{transform:scale(1); opacity:1;}}
+.modal .bigemoji{font-size:4rem; line-height:1.1; animation:bob 2s ease-in-out infinite;}
+.modal h3{margin:10px 0 4px; font-size:1.1rem;}
+.modal .mname{font-size:1.3rem; font-weight:800; color:var(--accent); margin:6px 0;}
+.modal p{color:var(--muted); font-size:.85rem; margin:6px 0 16px; line-height:1.45;}
+.cabinet h3{margin-top:0;}
+.pgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; text-align:left; margin:12px 0 16px;}
+.prize{border:1px solid var(--border); border-radius:12px; padding:10px; background:var(--bg);}
+.prize .pe{font-size:1.5rem; line-height:1.15;}
+.prize .pn{font-size:.78rem; font-weight:700; margin-top:4px;}
+.prize .pd{font-size:.68rem; color:var(--muted); line-height:1.35; margin-top:2px;}
+.phasehint{background:rgba(245,180,0,.16); border:1px solid var(--accent2); border-radius:10px; padding:8px 12px; font-size:.78rem; line-height:1.4; margin-bottom:10px; display:none;}
+.prize.locked{opacity:.5;}
+.prize.locked .pe{filter:grayscale(1);}
+.toast{position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%) translateY(20px);
+  background:var(--text); color:var(--bg); padding:10px 16px; border-radius:24px; font-size:.85rem; font-weight:600;
+  opacity:0; pointer-events:none; transition:all .3s; z-index:60; max-width:90%; text-align:center;}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+.confetti{position:fixed; top:-12px; width:9px; height:14px; z-index:70; pointer-events:none; animation:fall linear forwards;}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg); opacity:.9;}}
+@media (prefers-reduced-motion: reduce){
+  .herotrophy,.modal .bigemoji{animation:none;}
+  .confetti{display:none;}
+}
+
+/* ---------- Modo Concurso ---------- */
+.contestbtn{display:block; width:100%; padding:14px; border-radius:12px; border:none; background:var(--red); color:#fff;
+  font-size:1rem; font-weight:700; cursor:pointer;}
+.startbtn[disabled]{opacity:.35; cursor:not-allowed;}
+.startbtn.sm{padding:11px; font-size:.92rem; margin-top:8px;}
+.srow{display:flex; align-items:center; gap:10px; margin-bottom:8px;}
+.snum{flex:0 0 26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; font-size:.78rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center;}
+.setrow{display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:.88rem; margin-bottom:12px;}
+.setrow select{padding:8px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:.9rem;}
+.bsec{font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin:16px 0 6px;}
+.bmatch{background:var(--card); border:2px solid var(--border); border-radius:14px; padding:12px 14px; margin-bottom:8px;}
+.bmatch.next{border-color:var(--accent2);}
+.bmatch.done{opacity:.85;}
+.bmatch .bl{font-size:.72rem; color:var(--muted); margin-bottom:4px;}
+.bmatch .bv{display:flex; align-items:center; justify-content:space-between; gap:8px; font-weight:600; font-size:.95rem;}
+.bmatch .bv .vs{color:var(--muted); font-size:.75rem; font-weight:700;}
+.bmatch .bv .w{color:var(--good); font-weight:800;}
+.bmatch .mres{margin-top:6px; font-size:.82rem;}
+.bmatch .mres.muted{color:var(--muted);}
+.cscore{display:grid; grid-template-columns:1fr auto 1fr; gap:8px; margin-bottom:12px;}
+.cplayer{background:var(--card); border:2px solid var(--border); border-radius:14px; padding:10px 6px; text-align:center;}
+.cplayer .cn{font-weight:700; font-size:.92rem; word-break:break-word;}
+.cplayer .cs{font-size:2.3rem; font-weight:800; color:var(--accent); line-height:1.1;}
+.cvs{display:flex; align-items:center; font-weight:800; color:var(--muted);}
+.cmeta{display:flex; justify-content:space-between; font-size:.8rem; color:var(--muted); margin-bottom:8px; font-weight:600;}
+.ccard{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:24px 14px; text-align:center;
+  min-height:220px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;}
+.cready{font-size:1.4rem; font-weight:700; color:var(--muted);}
+.cipa{font-size:clamp(1.9rem,9vw,3.3rem); letter-spacing:.5px; word-break:break-word; line-height:1.25;}
+.cipa.long{font-size:clamp(1.3rem,6vw,2.1rem);}
+.ctimewrap{width:100%; max-width:380px;}
+.ctime{font-size:2rem; font-weight:800; color:var(--accent);}
+.ctime.up{color:var(--red); animation:pulse2 .7s infinite;}
+@keyframes pulse2{0%,100%{opacity:1;}50%{opacity:.35;}}
+.cbarbg{height:8px; background:var(--border); border-radius:4px; overflow:hidden; margin-top:6px;}
+.cbar{height:100%; background:var(--accent2); transition:width 1s linear;}
+.cctx{font-size:.95rem; color:var(--muted); line-height:1.5; word-break:break-word;}
+.cans{font-size:2rem; font-weight:800; color:var(--accent);}
+.calt{font-size:.85rem; color:var(--red); font-weight:600;}
+.csent{font-size:.9rem; color:var(--muted);}
+.markrow{display:flex; align-items:center; gap:8px; margin:8px 0;}
+.markrow .nm{flex:1; font-weight:700; font-size:.9rem; word-break:break-word;}
+.markbtn{padding:10px 12px; border-radius:10px; border:2px solid var(--border); background:var(--card); color:var(--text);
+  font-weight:700; font-size:.85rem; cursor:pointer;}
+.markbtn.ok.sel{background:var(--good); color:#fff; border-color:var(--good);}
+.markbtn.no.sel{background:var(--bad); color:#fff; border-color:var(--bad);}
+.cresult{text-align:center; padding:24px 6px;}
+.cresult .bigemoji{font-size:4.5rem; line-height:1.1;}
+.cresult h2{font-size:1.6rem; margin:10px 0 4px;}
+.pod{display:flex; align-items:center; gap:14px; background:var(--card); border:2px solid var(--border); border-radius:16px; padding:14px 16px; margin-bottom:10px;}
+.pod.p1{border-color:var(--accent2); padding:20px 16px;}
+.pod .pm{font-size:2.4rem; line-height:1;}
+.pod.p1 .pm{font-size:3.2rem;}
+.pod .pn2{font-size:1.15rem; font-weight:800; word-break:break-word;}
+.pod.p1 .pn2{font-size:1.4rem;}
+.pod .pp{font-size:.78rem; color:var(--muted);}
+
+/* ---------- Duelo 1 vs 1 ---------- */
+#duelScreen{display:none;}
+.dcode{font-size:3.2rem; font-weight:800; letter-spacing:.28em; color:var(--accent); text-align:center; margin:6px 0 2px; padding-left:.28em;}
+.dcount{font-size:5rem; font-weight:800; color:var(--red); line-height:1;}
+.dinput{font-size:1.25rem; text-align:center; text-transform:none;}
+.dline{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--border); border-radius:10px; margin:6px 0; font-size:.9rem; background:var(--bg);}
+.dline b{word-break:break-word;}
+.dpts{font-weight:800; color:var(--accent);}
+.dnote{font-size:.78rem; color:var(--muted); text-align:center; margin-top:10px; line-height:1.45;}
+.dstatus{font-size:.9rem; color:var(--muted); text-align:center; margin-top:10px; min-height:1.3rem;}
+.dsel{display:flex; flex-direction:column; gap:10px;}
+#regErr:empty{display:none;}
+/* ---------- Inicio: cuenta regresiva y secciones plegables ---------- */
+.countdown{background:var(--accent); color:#fff; border-radius:14px; padding:12px 14px; text-align:center; font-weight:700; font-size:.95rem; line-height:1.4;}
+.countdown small{display:block; font-weight:500; font-size:.78rem; opacity:.9;}
+.startbtn.gold{background:var(--accent2); color:var(--on-accent2);}
+.acc{background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden;}
+.acc summary{list-style:none; cursor:pointer; padding:15px 44px 15px 16px; font-weight:700; font-size:.98rem; position:relative; line-height:1.35;}
+.acc summary::-webkit-details-marker{display:none;}
+.acc summary::after{content:"＋"; position:absolute; right:16px; top:50%; transform:translateY(-50%); color:var(--accent); font-size:1.2rem; font-weight:700;}
+.acc[open] summary::after{content:"－";}
+.acc[open] summary{border-bottom:1px solid var(--border);}
+.accbody{padding:16px 16px 18px;}
+
+/* ---------- Pizarra y Simulacro ---------- */
+#boardControls{display:none; margin-top:14px;}
+#boardControls .btnrow{margin-top:0;}
+button.big.ok{background:var(--good); color:#fff;}
+button.big.no{background:var(--bad); color:#fff;}
+#simScreen{display:none;}
+.shead{font-size:1.4rem; text-align:center; margin:6px 0 4px;}
+.cipa.sent{text-align:left; align-self:stretch; font-size:clamp(1.15rem,5vw,1.6rem); word-spacing:.22em; line-height:1.55;}
+.slist{margin:0; padding-left:20px; font-size:.88rem; line-height:1.6;}
+.sfail{border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin:8px 0; background:var(--bg); font-size:.88rem; line-height:1.5; word-break:break-word;}
+.sfail .sipa{color:var(--muted); font-size:.8rem;}
+.sfail .sok{color:var(--good); font-weight:700;}
+.sfail .sbad{color:var(--bad); font-weight:700;}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ HOME ============ -->
+  <div id="homeScreen">
+    <div class="brandbar"></div>
+    <div class="hero">
+      <div class="herotrophy">🏆</div>
+      <h1>¡Bienvenido al Concurso de Fonética!</h1>
+      <div class="greet" id="greet">Lee el IPA, escribe la palabra, gana premios y llega a la gran final.</div>
+    </div>
+
+
+    <div class="chips">
+      <div class="chip"><span class="big" id="hRank">🐣</span><span class="lbl" id="hRankName">Principiante</span></div>
+      <div class="chip"><span class="big" id="hXp">0</span><span class="lbl">XP (puntos)</span></div>
+      <div class="chip"><span class="big" id="hStreak">0</span><span class="lbl">Racha (días)</span></div>
+      <div class="chip"><span class="big" id="hPrizes">0/16</span><span class="lbl">Premios</span></div>
+    </div>
+
+    <div class="countdown" id="countdown"></div>
+
+    <div class="homecard" id="regCard" style="display:none">
+      <h2>Antes de empezar</h2>
+      <select id="stuSel" style="width:100%; padding:12px; font-size:1rem; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text);"></select>
+      <input id="stuName" type="text" maxlength="30" autocomplete="off" autocorrect="off" placeholder="Escribe tu nombre y apellido" style="display:none; width:100%; margin-top:10px; padding:12px; font-size:1rem; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text);">
+      <div class="dnote">La coordinadora de fonética verá tu nombre, tus puntos y cuánto practicas, para saber quién se está esforzando. Elige tu nombre de la lista; si eres nuevo en la categoría, elige la última opción y escríbelo.</div>
+      <div class="dstatus" id="regErr" style="color:var(--bad)"></div>
+    </div>
+    <div class="dnote" id="whoLine" style="display:none;margin:0"></div>
+    <button class="startbtn" id="startBtn">Comenzar práctica ➜</button>
+    <button class="startbtn gold" id="simBtn">🎯 Simulacro de competencia</button>
+    <button class="ghostbtn" id="homeTipsBtn">💡 Pistas: de IPA a escritura</button>
+    <button class="ghostbtn" id="homePrizesBtn">🏆 Ver mi vitrina de premios</button>
+    <button class="ghostbtn" id="homeDuelBtn">⚔️ Duelo con un compañero (extra)</button>
+    <button class="ghostbtn sendNow" id="sendNowBtn" style="display:none">📤 Enviar mi progreso</button>
+
+    <div class="daily">
+      🎯 <b>Reto de hoy:</b> acierta <b>10 ítems</b> en el Quiz o en la Pizarra y gana <b>+25 XP</b> de bonus.
+      Practica cada día para mantener tu racha 🔥 y desbloquear premios como la Medalla de Bronce 🥉, Plata 🥈, Oro 🥇 y la Corona de Leyenda 👑.
+    </div>
+
+    <div class="homecard">
+      <h2>🎯 ¿Para qué es esta app?</h2>      <p style="margin:0;font-size:.88rem;line-height:1.5">Esta app es para que <b>practiques para la competencia real</b>. <b>Practicar aquí todavía no es la competencia</b>: nadie gana ni pierde nada de verdad, y los puntos (XP), rangos y premios son solo para motivarte. Equivocarte aquí es parte de aprender. La competencia real será el <b>31 de octubre</b>, con las rondas y pizarras que se explican abajo.</p>
+    </div>
+
+    <div class="infohead">📖 Todo lo que debes saber</div>
+    <div class="dnote" style="margin:-8px 0 0">Toca cada título para abrirlo.</div>
+
+    <details class="acc"><summary>¿Cómo vamos a jugar?</summary><div class="accbody">      <ul class="steps">
+        <li><span class="stepnum">1</span><span class="steptext"><b>El reto:</b> en la pantalla grande verán una palabra u oración escrita en símbolos fonéticos (IPA) y solo tienen que <b>escribirla en inglés normal</b>. Nadie debe decir nada en voz alta.<br><span class="ex">Ven: <b>flæɡ</b> &nbsp;→&nbsp; Escriben: <b>flag</b></span><br>Para escribir se les dan dos pizarras, una para cada concursante.</span></li>
+        <li><span class="stepnum">2</span><span class="steptext"><b>Modalidad:</b> pasan de 2 en 2 al frente.</span></li>
+        <li><span class="stepnum alt">3</span><span class="steptext"><b>Eliminación:</b> el ganador de la Ronda 1 compite contra el ganador de la Ronda 2, y así sucesivamente hasta llegar a la final. Al final habrá <b>1.er, 2.º y 3.er lugar</b>.</span></li>
+        <li><span class="stepnum alt">4</span><span class="steptext"><b>Dificultad progresiva:</b><br>
+          <b>Fase 1 · Básico:</b> palabras y oraciones cortas.<br>
+          <b>Fase 2 · Intermedio:</b> palabras y oraciones más largas.<br>
+          <b>Fase 3 · Experto:</b> palabras difíciles como <b>ˈkɑːnʃəns</b> o <b>ˌfəʊtəʊˈsɪnθəsɪs</b> y oraciones más largas.</span></li>
+      </ul></div></details>
+
+    <details class="acc"><summary>¿Cómo estudiar para la competencia?</summary><div class="accbody">      <ul class="steps">
+        <li><span class="stepnum">1</span><span class="steptext"><b>Por niveles, sin saltarse fases.</b> Estudien en orden: primero la Fase 1, después la 2 y al final la 3. Si no ganan la Fase 1, nunca llegan a la 2; y si no ganan la 2, nunca llegan a la 3. <b>No estudien solo las palabras difíciles:</b> si no dominan la Fase 1, se quedan fuera en la primera ronda.</span></li>
+        <li><span class="stepnum">2</span><span class="steptext"><b>Les pueden tocar ambas.</b> En la pantalla puede salir solo una palabra o una oración completa, al azar. Por eso hay dos pestañas, <b>Palabras</b> y <b>Oraciones</b>, y tienen que estudiar las dos.<br><span class="ex">Palabra: <b>flæɡ</b> → flag</span><br><span class="ex">Oración: <b>reɪz aʊər flæɡ haɪ</b> → Raise our flag high.</span></span></li>
+        <li><span class="stepnum alt">3</span><span class="steptext"><b>Estudien los símbolos, no memoricen.</b> La guía es para aprender los símbolos; en la competencia puede aparecer una palabra u oración nueva que no está en ella. Los símbolos se repiten en todas las palabras: si aprenden que <b>æ</b> suena como "a", ya pueden leer <b>flæɡ</b> = flag, <b>ˈækses</b> = access y <b>stæf</b> = staff.</span></li>
+        <li><span class="stepnum alt">4</span><span class="steptext"><b>Cómo usar esta app:</b> empiecen en modo <b>Tarjetas</b> (miran el IPA, piensan cómo se escribe y tocan <b>Revelar</b>). Después pasen a <b>Pizarra</b>: escriben la respuesta a mano, como en la competencia, y marcan si acertaron. Luego usen el <b>Quiz</b>, donde escriben la respuesta en el celular y la app la califica. Cuando se sientan listos, hagan un <b>🎯 Simulacro</b>: 10 ítems con tiempo, sin pistas y sin saber si acertaron hasta el final. Usen <b>💡 Pistas</b> para ver con qué letras se escribe cada sonido.</span></li>
+      </ul>
+      <div class="note">
+        <b>Importante:</b> las palabras de la lista aparecen <b>siempre con la primera letra en mayúscula</b> (por ejemplo: Flag, Nutrition, Rhythm). Es solo el formato de la lista; en el Quiz y en el Simulacro puedes escribirlas con mayúscula o con minúscula y se calificarán igual.
+      </div></div></details>
+
+    <details class="acc"><summary>⭐ ¿Qué es el XP?</summary><div class="accbody">      <p style="margin:0;font-size:.88rem;line-height:1.5">El <b>XP</b> (puntos de experiencia) son los puntos que ganas al practicar: <b>10 XP</b> por cada ítem nuevo que aciertas, <b>4 XP</b> si ya lo habías acertado antes, más bonus por acertar seguidas. Mientras más XP tengas, <b>subes de rango</b> y desbloqueas <b>premios</b>. En la Pizarra ganas <b>5 XP</b> si marcas ✓ y <b>1 XP</b> si marcas ✗. En el Simulacro ganas <b>10 XP</b> por acierto y <b>20 XP</b> por terminarlo. El XP no cuenta para la competencia real; es solo para motivarte a practicar.</p></div></details>
+
+    <details class="acc"><summary>💾 Guardar y enviar tu progreso</summary><div class="accbody">      <p style="margin:0;font-size:.88rem;line-height:1.5">Tu progreso <b>se guarda solo</b> en este celular cada vez que practicas (usa siempre el mismo celular y la misma página). También se <b>envía solo</b> a la coordinadora de fonética mientras practicas. Si quieres asegurarte, toca <b>📤 Enviar mi progreso</b> al terminar; lo encuentras en el inicio y dentro de la práctica.</p></div></details>
+
+    <details class="acc"><summary>⚔️ ¿Cómo jugar un duelo con un compañero? (extra)</summary><div class="accbody">      <ul class="steps">
+        <li><span class="stepnum">1</span><span class="steptext"><b>Quien crea el duelo:</b> toca <b>⚔️ Duelo con un compañero</b> → <b>Crear duelo y obtener código</b>. Aparece un código de 4 caracteres: <b>envíaselo a tu compañero</b> (por WhatsApp, por ejemplo).</span></li>
+        <li><span class="stepnum">2</span><span class="steptext"><b>Quien se une:</b> abre esta misma página en su celular, toca <b>⚔️ Duelo con un compañero</b>, escribe el código y toca <b>Unirme</b>.</span></li>
+        <li><span class="stepnum alt">3</span><span class="steptext"><b>Quien creó el duelo elige</b> la fase, cuántas palabras (3, 5, 7 o 10) y el tiempo, y toca <b>¡Empezar duelo!</b></span></li>
+        <li><span class="stepnum alt">4</span><span class="steptext"><b>A jugar:</b> tras una cuenta regresiva de 3 segundos, ambos ven el mismo IPA a la vez. Escribe la palabra y toca <b>Enviar respuesta</b>. Se muestra la respuesta correcta y los puntos: <b>10 por acierto, +5 si respondes más rápido</b>. Al final verás quién ganó y puedes tocar <b>⚔️ Jugar de nuevo</b>.</span></li>
+      </ul>
+      <div class="note">
+        El duelo es solo con <b>palabras</b>. Ganas XP: <b>40</b> el ganador, <b>25</b> en empate y <b>15</b> por participar. Los dos necesitan internet; si el wifi de la escuela no funciona, usa datos móviles. Si tu rival se desconecta, verás el aviso "Tu rival se desconectó".
+      </div></div></details>
+
+  </div>
+
+  <!-- ============ STUDY ============ -->
+  <div id="studyScreen">
+    <div class="topbar">
+      <button class="backbtn" id="backBtn">🏠 Inicio</button>
+      <span style="display:flex;gap:6px;"><button class="prizebtn" id="studyTipsBtn">💡 Pistas</button><button class="prizebtn" id="studyPrizesBtn">🏆 Premios</button></span>
+    </div>
+    <div class="brandbar"></div>
+
+    <div class="hud">
+      <div class="hudrow">
+        <span><span id="sRankEmoji">🐣</span> <span class="rankname" id="sRankName">Principiante</span></span>
+        <span>🔥 <b id="sStreak">0</b> días</span>
+        <span>🎯 <b id="sDaily">0</b>/10 hoy</span>
+      </div>
+      <div class="xpbar"><div class="xpfill" id="xpfill"></div></div>
+      <div class="xptext"><span id="sXp">0 XP</span><span id="sNext"></span></div>
+    </div>
+
+    <div class="phasebar">
+      <div class="phase active" data-phase="1">Fase 1<small>Cuartos · Básico</small></div>
+      <div class="phase" data-phase="2">Fase 2<small>Semifinal · Intermedio</small></div>
+      <div class="phase" data-phase="3">Fase 3<small>Final · Experto</small></div>
+    </div>
+
+    <div class="phasehint" id="phaseHint"></div>
+
+    <div class="tabs">
+      <div class="tab active" data-set="words" id="tabWords">Palabras (25)</div>
+      <div class="tab" data-set="sentences" id="tabSentences">Oraciones (25)</div>
+    </div>
+
+    <div class="modebar">
+      <div class="mode active" data-mode="flash">🔁 Tarjetas</div>
+      <div class="mode" data-mode="board">📝 Pizarra</div>
+      <div class="mode" data-mode="quiz">✍️ Quiz</div>
+    </div>
+
+    <div class="progressbar"><div class="progressfill" id="progressfill"></div></div>
+
+    <div class="card" id="card">
+      <div class="combo" id="combo"></div>
+      <div class="eje" id="eje"></div>
+      <div class="ipa" id="ipa">/.../</div>
+      <div class="answer" id="answer"></div>
+      <div class="hint" id="hint">Toca "Revelar" para ver la respuesta</div>
+    </div>
+
+    <div id="flashControls" class="btnrow">
+      <button class="big btn-secondary" id="prevBtn">← Anterior</button>
+      <button class="big btn-secondary" id="revealBtn">👁️ Revelar</button>
+      <button class="big btn-primary" id="nextBtn">Siguiente ➜</button>
+    </div>
+
+    <div id="boardControls">
+      <div class="btnrow" id="pzBefore">
+        <button class="big btn-secondary" id="pzPrev">← Anterior</button>
+        <button class="big btn-primary" id="pzReveal">👁️ Revelar</button>
+        <button class="big btn-secondary" id="pzSkip">Saltar ➜</button>
+      </div>
+      <div id="pzAfter" style="display:none;">
+        <div class="dnote" style="margin:0 0 8px">Compara con lo que escribiste. ¿Lo escribiste bien?</div>
+        <div class="btnrow">
+          <button class="big ok" id="pzOk">✓ Sí, bien</button>
+          <button class="big no" id="pzNo">✗ Me equivoqué</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="quizControls" class="quizbox" style="display:none;">
+      <input type="text" id="quizInput" placeholder="Escribe lo que representa este IPA..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div class="btnrow">
+        <button class="big btn-primary" id="checkBtn">Comprobar</button>
+        <button class="big btn-secondary" id="skipBtn">Saltar ➜</button>
+      </div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+
+    <div class="stats">
+      <span>Ítem <b id="posLabel">1</b> / <b id="totalLabel">25</b></span>
+      <span>Dominados: <b id="masteredLabel">0</b> / <b id="masteredTotal">25</b></span>
+      <span>Aciertos: <b id="scoreLabel">0</b> / <b id="attemptsLabel">0</b></span>
+    </div>
+
+    <button class="ghostbtn sendNow" id="sendNowBtn2" style="display:none;margin-top:14px">📤 Enviar mi progreso</button>
+    <div class="dnote" style="text-align:center">💾 Tu progreso se guarda solo en este celular.</div>
+    <div class="resetlink" id="resetLink">Reiniciar todo mi progreso</div>
+  </div>
+
+  <!-- ============ SIMULACRO ============ -->
+  <div id="simScreen">
+    <div class="topbar">
+      <button class="backbtn" id="sBack">🏠 Inicio</button>
+    </div>
+    <div class="brandbar"></div>
+    <div id="sRoot"></div>
+  </div>
+
+  <!-- ============ DUELO 1 VS 1 ============ -->
+  <div id="duelScreen">
+    <div class="topbar">
+      <button class="backbtn" id="dBack">🏠 Inicio</button>
+    </div>
+    <div class="brandbar"></div>
+    <div id="dRoot"></div>
+  </div>
+
+</div>
+
+<!-- Premio / rango -->
+<div class="overlay" id="prizeOverlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="bigemoji" id="mEmoji">🏆</div>
+    <h3 id="mTitle">¡Nuevo premio!</h3>
+    <div class="mname" id="mName"></div>
+    <p id="mDesc"></p>
+    <button class="startbtn" id="mClose">¡Genial!</button>
+  </div>
+</div>
+
+<!-- Vitrina -->
+<div class="overlay" id="cabinetOverlay">
+  <div class="modal cabinet" role="dialog" aria-modal="true" style="max-width:420px;">
+    <h3>🏆 Mi vitrina de premios</h3>
+    <div class="greet" id="cabinetCount"></div>
+    <div class="pgrid" id="pgrid"></div>
+    <button class="startbtn" id="cabinetClose">Cerrar</button>
+  </div>
+</div>
+
+<div class="overlay" id="tipsOverlay">
+  <div class="modal cabinet" role="dialog" aria-modal="true" style="max-width:420px;">
+    <h3>💡 Pistas: de IPA a escritura</h3>
+    <div class="greet">Un mismo sonido puede escribirse de varias formas. Estas son las más comunes.</div>
+    <div class="pgrid" id="tipsGrid"></div>
+    <p style="margin-top:0;"><b>Letras mudas:</b> el IPA no muestra las letras que no se pronuncian (la b de debt, la s de island, la k de knowledge). Si el IPA te suena a una palabra conocida, piensa si lleva letras extra.</p>
+    <p style="margin-top:0;"><b>Palabras que suenan igual</b> (heir/air, peace/piece): se aceptan ambas.</p>
+    <button class="startbtn" id="tipsClose">Entendido</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* DATA[fase][words|sentences] = [ [texto, IPA, eje], ... ] */
+const DATA = {"1": {"words": [["Honest", "ˈɑːnɪst", ""], ["Respect", "rɪˈspekt", ""], ["Peace", "piːs", ""], ["Design", "dɪˈzaɪn", ""], ["Flag", "flæɡ", ""], ["Hero", "ˈhɪrəʊ", ""], ["Tree", "triː", ""], ["Forest", "ˈfɔːrɪst", ""], ["Climate", "ˈklaɪmət", ""], ["Heat", "hiːt", ""], ["Sport", "spɔːrt", ""], ["Team", "tiːm", ""], ["Equal", "ˈiːkwəl", ""], ["Access", "ˈækses", ""], ["Include", "ɪnˈkluːd", ""], ["Science", "ˈsaɪəns", ""], ["Data", "ˈdeɪtə", ""], ["Robot", "ˈrəʊbɑːt", ""], ["Skill", "skɪl", ""], ["Goal", "ɡəʊl", ""], ["Grade", "ɡreɪd", ""], ["Teacher", "ˈtiːtʃər", ""], ["Guide", "ɡaɪd", ""], ["Teach", "tiːtʃ", ""], ["Staff", "stæf", ""]], "sentences": [["Be honest and brave.", "biː ˈɑːnɪst ənd breɪv", ""], ["Give respect to all.", "ɡɪv rɪˈspekt tə ɔːl", ""], ["We want peace.", "wiː wɑːnt piːs", ""], ["We design a poster.", "wiː dɪˈzaɪn ə ˈpəʊstər", ""], ["Raise our flag high.", "reɪz aʊər flæɡ haɪ", ""], ["He is a hero.", "hiː ɪz ə ˈhɪrəʊ", ""], ["Birds sit in a tree.", "bɜːrdz sɪt ɪn ə triː", ""], ["A forest needs care.", "ə ˈfɔːrɪst niːdz ker", ""], ["Climate changes fast.", "ˈklaɪmət ˈtʃeɪndʒɪz fæst", ""], ["Heat dries our fields.", "hiːt draɪz aʊər fiːldz", ""], ["Sport keeps kids fit.", "spɔːrt kiːps kɪdz fɪt", ""], ["Our team plays hard.", "aʊər tiːm pleɪz hɑːrd", ""], ["Give kids equal chances.", "ɡɪv kɪdz ˈiːkwəl ˈtʃænsɪz", ""], ["Ramps give us access.", "ræmps ɡɪv ʌs ˈækses", ""], ["We include every child.", "wiː ɪnˈkluːd ˈevri tʃaɪld", ""], ["Science helps us learn.", "ˈsaɪəns helps ʌs lɜːrn", ""], ["Check our data twice.", "tʃek aʊər ˈdeɪtə twaɪs", ""], ["A robot can help.", "ə ˈrəʊbɑːt kən help", ""], ["Practice builds every skill.", "ˈpræktɪs bɪldz ˈevri skɪl", ""], ["Set a clear goal.", "set ə klɪr ɡəʊl", ""], ["He earned a top grade.", "hiː ɜːrnd ə tɑːp ɡreɪd", ""], ["Our teacher guides us.", "aʊər ˈtiːtʃər ɡaɪdz ʌs", ""], ["Teachers guide young learners.", "ˈtiːtʃərz ɡaɪd jʌŋ ˈlɜːrnərz", ""], ["We teach and learn.", "wiː tiːtʃ ənd lɜːrn", ""], ["Our staff works hard.", "aʊər stæf wɜːrks hɑːrd", ""]]}, "2": {"words": [["Nutrition", "nuˈtrɪʃn", ""], ["Healthy", "ˈhelθi", ""], ["Dignity", "ˈdɪɡnəti", ""], ["Gratitude", "ˈɡrætɪtuːd", ""], ["Cultural", "ˈkʌltʃərəl", ""], ["Heritage", "ˈherɪtɪdʒ", ""], ["Historical", "hɪˈstɔːrɪkl", ""], ["Identity", "aɪˈdentəti", ""], ["National", "ˈnæʃnəl", ""], ["Ecosystem", "ˈiːkəʊsɪstəm", ""], ["Pollution", "pəˈluːʃn", ""], ["Accessible", "əkˈsesəbl", ""], ["Inclusion", "ɪnˈkluːʒn", ""], ["Together", "təˈɡeðər", ""], ["Evidence", "ˈevɪdəns", ""], ["Solution", "səˈluːʃn", ""], ["Effective", "ɪˈfektɪv", ""], ["Assessment", "əˈsesmənt", ""], ["Achievement", "əˈtʃiːvmənt", ""], ["Professional", "prəˈfeʃənl", ""], ["Educator", "ˈedʒukeɪtər", ""], ["Leadership", "ˈliːdərʃɪp", ""], ["Responsible", "rɪˈspɑːnsəbl", ""], ["Management", "ˈmænɪdʒmənt", ""], ["Library", "ˈlaɪbreri", ""]], "sentences": [["Good nutrition supports healthy growth in children.", "ɡʊd nuˈtrɪʃn səˈpɔːrts ˈhelθi ɡroʊθ ɪn ˈtʃɪldrən", ""], ["A healthy breakfast gives students more energy.", "ə ˈhelθi ˈbrekfəst ɡɪvz ˈstuːdnts mɔːr ˈenərdʒi", ""], ["Every person deserves dignity and respect.", "ˈevri ˈpɜːrsn dɪˈzɜːrvz ˈdɪɡnəti ənd rɪˈspekt", ""], ["Gratitude teaches children to thank others.", "ˈɡrætɪtuːd ˈtiːtʃɪz ˈtʃɪldrən tə θæŋk ˈʌðərz", ""], ["Cultural traditions connect different generations of families.", "ˈkʌltʃərəl trəˈdɪʃnz kəˈnekt ˈdɪfrənt ˌdʒenəˈreɪʃnz əv ˈfæməliz", ""], ["Our heritage deserves careful protection.", "aʊər ˈherɪtɪdʒ dɪˈzɜːrvz ˈkerfl prəˈtekʃn", ""], ["Historical photos show how people lived.", "hɪˈstɔːrɪkl ˈfoʊtoʊz ʃoʊ haʊ ˈpiːpl lɪvd", ""], ["Our identity reflects our shared history.", "aʊər aɪˈdentəti rɪˈflekts aʊər ʃerd ˈhɪstri", ""], ["National symbols unite our communities.", "ˈnæʃnəl ˈsɪmblz juˈnaɪt aʊər kəˈmjuːnətiz", ""], ["Every ecosystem contains many living organisms.", "ˈevri ˈiːkəʊsɪstəm kənˈteɪnz ˈmeni ˈlɪvɪŋ ˈɔːrɡənɪzəmz", ""], ["Pollution damages rivers and threatens wildlife.", "pəˈluːʃn ˈdæmɪdʒɪz ˈrɪvərz ənd ˈθretnz ˈwaɪldlaɪf", ""], ["Schools should provide accessible learning materials.", "skuːlz ʃʊd prəˈvaɪd əkˈsesəbl ˈlɜːrnɪŋ məˈtɪriəlz", ""], ["Inclusion creates stronger learning communities.", "ɪnˈkluːʒn kriˈeɪts ˈstrɔːŋɡər ˈlɜːrnɪŋ kəˈmjuːnətiz", ""], ["Children with different abilities learn together every day.", "ˈtʃɪldrən wɪð ˈdɪfrənt əˈbɪlətiz lɜːrn təˈɡeðər ˈevri deɪ", ""], ["Evidence supports reliable scientific conclusions.", "ˈevɪdəns səˈpɔːrts rɪˈlaɪəbl ˌsaɪənˈtɪfɪk kənˈkluːʒnz", ""], ["Researchers look for a practical solution.", "rɪˈsɜːrtʃərz lʊk fər ə ˈpræktɪkl səˈluːʃn", ""], ["Effective teaching improves student learning.", "ɪˈfektɪv ˈtiːtʃɪŋ ɪmˈpruːvz ˈstuːdnt ˈlɜːrnɪŋ", ""], ["Assessment helps teachers identify learning needs.", "əˈsesmənt helps ˈtiːtʃərz aɪˈdentɪfaɪ ˈlɜːrnɪŋ niːdz", ""], ["Daily practice leads to great achievement.", "ˈdeɪli ˈpræktɪs liːdz tə ɡreɪt əˈtʃiːvmənt", ""], ["Professional development strengthens teaching practice.", "prəˈfeʃənl dɪˈveləpmənt ˈstreŋkθnz ˈtiːtʃɪŋ ˈpræktɪs", ""], ["A good educator inspires curious students.", "ə ɡʊd ˈedʒukeɪtər ɪnˈspaɪərz ˈkjʊriəs ˈstuːdnts", ""], ["Good leadership supports institutional growth.", "ɡʊd ˈliːdərʃɪp səˈpɔːrts ˌɪnstɪˈtuːʃənl ɡroʊθ", ""], ["Each member is responsible for shared resources.", "iːtʃ ˈmembər ɪz rɪˈspɑːnsəbl fər ʃerd ˈriːsɔːrsɪz", ""], ["Strong management improves school organization.", "strɔːŋ ˈmænɪdʒmənt ɪmˈpruːvz skuːl ˌɔːrɡənəˈzeɪʃn", ""], ["The library offers thousands of free books.", "ðə ˈlaɪbreri ˈɔːfərz ˈθaʊzndz əv friː bʊks", ""]]}, "3": {"words": [["Rhythm", "ˈrɪðəm", ""], ["Debt", "det", ""], ["Conscience", "ˈkɑːnʃəns", ""], ["Ingenious", "ɪnˈdʒiːniəs", ""], ["Sculpture", "ˈskʌlptʃər", ""], ["Island", "ˈaɪlənd", ""], ["Environment", "ɪnˈvaɪrənmənt", ""], ["Desert", "ˈdezərt (n.) · dɪˈzɜːrt (v.)", ""], ["Drought", "draʊt", ""], ["Strength", "streŋkθ", ""], ["Braille", "breɪl", ""], ["Photosynthesis", "ˌfəʊtəʊˈsɪnθəsɪs", ""], ["Phenomenon", "fəˈnɑːmɪnən", ""], ["Hypothesis", "haɪˈpɑːθəsɪs", ""], ["Equitable", "ˈekwɪtəbl", ""], ["Census", "ˈsensəs", ""], ["Curriculum", "kəˈrɪkjələm", ""], ["Syllabus", "ˈsɪləbəs", ""], ["Bureaucracy", "bjʊˈrɑːkrəsi", ""]], "sentences": [["A steady rhythm of sleep and study keeps you balanced.", "ə ˈstedi ˈrɪðəm əv sliːp ənd ˈstʌdi kiːps ju ˈbælənst", ""], ["He is working hard so he won't fall into debt.", "hiː ɪz ˈwɜːrkɪŋ hɑːrd soʊ hi woʊnt fɔːl ˈɪntə det", ""], ["My conscience would not let me keep what wasn't mine.", "maɪ ˈkɑːnʃəns wʊd nɑːt let miː kiːp wʌt ˈwʌznt maɪn", ""], ["It's an ingenious idea to build toys out of recycled paper.", "ɪts ən ɪnˈdʒiːniəs aɪˈdiːə tə bɪld tɔɪz aʊt əv riˈsaɪkld ˈpeɪpər", ""], ["His sculpture of a heron was displayed in the lobby.", "hɪz ˈskʌlptʃər əv ə ˈherən wəz dɪˈspleɪd ɪn ðə ˈlɑːbi", ""], ["Their ancestors crossed the sea and settled on an island.", "ðer ˈænsestərz krɔːst ðə siː ənd ˈsetld ɑːn ən ˈaɪlənd", ""], ["We have to protect the environment for our grandchildren.", "wiː həv tə prəˈtekt ði ɪnˈvaɪrənmənt fər aʊər ˈɡrændtʃɪldrən", ""], ["Farmers desert dry land when the desert keeps growing.", "ˈfɑːrmərz dɪˈzɜːrt draɪ lænd wen ðə ˈdezərt kiːps ˈɡroʊɪŋ", ""], ["The drought has lasted so long that the crops have failed.", "ðə draʊt həz ˈlæstɪd soʊ lɔːŋ ðət ðə krɑːps həv feɪld", ""], ["Strength and speed come with months of steady training.", "streŋkθ ənd spiːd kʌm wɪð mʌnθs əv ˈstedi ˈtreɪnɪŋ", ""], ["She reads braille faster than most of us read print.", "ʃi riːdz breɪl ˈfæstər ðən moʊst əv ʌs riːd prɪnt", ""], ["Plants use sunlight and water in a process called photosynthesis.", "plænts juːz ˈsʌnlaɪt ənd ˈwɔːtər ɪn ə ˈprɑːses kɔːld ˌfəʊtəʊˈsɪnθəsɪs", ""], ["A rainbow is a natural phenomenon caused by light and water.", "ə ˈreɪnboʊ ɪz ə ˈnætʃrəl fəˈnɑːmɪnən kɔːzd baɪ laɪt ənd ˈwɔːtər", ""], ["Our hypothesis was wrong, but we learned something valuable.", "aʊər haɪˈpɑːθəsɪs wəz rɔːŋ bət wiː lɜːrnd ˈsʌmθɪŋ ˈvæljuəbl", ""], ["An equitable system gives every child a fair chance.", "ən ˈekwɪtəbl ˈsɪstəm ɡɪvz ˈevri tʃaɪld ə fer tʃæns", ""], ["The census counted families in villages that maps had missed.", "ðə ˈsensəs ˈkaʊntɪd ˈfæməliz ɪn ˈvɪlɪdʒɪz ðət mæps həd mɪst", ""], ["The new curriculum emphasizes critical thinking over memorization.", "ðə nuː kəˈrɪkjələm ˈemfəsaɪzɪz ˈkrɪtɪkl ˈθɪŋkɪŋ ˈoʊvər ˌmeməraɪˈzeɪʃn", ""], ["She handed out the syllabus before the first lesson.", "ʃi ˈhændɪd aʊt ðə ˈsɪləbəs bɪˈfɔːr ðə fɜːrst ˈlesn", ""], ["Too much bureaucracy can slow down even simple decisions.", "tuː mʌtʃ bjʊˈrɑːkrəsi kən sloʊ daʊn ˈiːvn ˈsɪmpl dɪˈsɪʒnz", ""]]}};
+
+/* ---------- Configuración del juego ---------- */
+const DAILY_GOAL = 10;
+const DAILY_BONUS = 25;
+const RANKS = [
+  {min:0,    emoji:"🐣", name:"Principiante"},
+  {min:150,  emoji:"📘", name:"Aprendiz"},
+  {min:450,  emoji:"🧭", name:"Explorador"},
+  {min:1000,  emoji:"⭐", name:"Fonetista"},
+  {min:2000, emoji:"🎓", name:"Maestro"},
+  {min:3500, emoji:"🏆", name:"Campeón"},
+  {min:5000, emoji:"👑", name:"Leyenda"}
+];
+/* Palabras que suenan igual: se aceptan ambas en el Quiz (solo en Palabras) */
+const ALT = {
+  "heir":["air","ere"], "aisle":["isle","i'll"], "colonel":["kernel"], "principal":["principle"],
+  "peace":["piece"], "past":["passed"], "rain":["reign","rein"], "cell":["sell"], "weather":["whether"]
+};
+/* Variantes de ortografía británica que también se aceptan */
+const VARIANTS = [[/honour/g,"honor"],[/theatre/g,"theater"],[/practised/g,"practiced"],[/organisation/g,"organization"],
+                  [/memorisation/g,"memorization"],[/emphasises/g,"emphasizes"]];
+const TIPS = [
+  ["θ  ð","th","think, the"],
+  ["ʃ","sh, ti, ci","shop, nation, special"],
+  ["ʒ","si, s","vision, measure"],
+  ["tʃ","ch, tch","teacher, watch"],
+  ["dʒ","j, g, dge","job, age, bridge"],
+  ["ŋ","ng, n","sing, think"],
+  ["f","f, ph, gh","food, photo, laugh"],
+  ["k","c, k, ck, ch","cat, key, back, school"],
+  ["kw","qu","question, quick"],
+  ["iː","ee, ea, ie","tree, team, field"],
+  ["uː","oo, ue, ew, u_e","food, blue, new, rule"],
+  ["eɪ","a_e, ai, ay","make, rain, day"],
+  ["aɪ","i_e, igh, y","time, light, my"],
+  ["oʊ","o_e, oa, ow, o","home, goal, show, hero"],
+  ["ɔː","aw, au, al","draw, cause, small"],
+  ["ɑː","o, a, ar","robot, calm, art"],
+  ["ə","cualquier vocal sin acento","a, e, i, o, u"],
+  ["ɜːr","er, ir, ur, or","learn, bird, turn, work"],
+  ["ər","er, or, ar","teacher, doctor, sugar"]
+];
+/* ---- Panel de la coordinadora: si TRACK_URL tiene valor, se envía el progreso a su hoja de Google ---- */
+const ROSTER = ["Cristiam Reynaldo","Jefferson Benedicto","Jeancarlos Oliver","Ingrid Isamar","Ariana Karina","Litzy Nayara","Iveth Arauz","Allyson Lanzas"];
+(function(){
+  const sel = document.getElementById("stuSel"); if(!sel) return;
+  sel.innerHTML = '<option value="">Elige tu nombre…</option>' + ROSTER.map(n=>'<option>'+n+'</option>').join("") + '<option value="__new">➕ Soy nuevo en la categoría (escribir mi nombre)</option>';
+  sel.addEventListener("change", ()=>{ const i = document.getElementById("stuName"); i.style.display = sel.value === "__new" ? "block" : "none"; if(sel.value === "__new") i.focus(); });
+})();
+const TRACK_URL = "https://script.google.com/macros/s/AKfycbzW88o6FoxS8dYp1LCRWPFv9WpDPsbIqO6ZYNpObNdzSvYFYg4q7J_h2GeufxldMurIvA/exec";
+const TRACK_KEY = "miclave-fon-24";
+const W3F_KEY = "";   // clave de Web3Forms (envía un correo a la coordinadora)
+const W3F_ON = !!W3F_KEY;
+const TRACK_ON = !!TRACK_URL || W3F_ON;
+const W3F_DAY_MAX = 2, W3F_MONTH_MAX = 30;
+const GOOD = ["¡Excelente!","¡Perfecto!","¡Así se hace!","¡Muy bien!","¡Brillante!","¡Eres un crack!","¡Sigue así!"];
+
+const PRIZES = [
+  {id:"duel1",  e:"⚔️", n:"Duelista",            d:"Juega tu primer duelo contra un compañero.",         t:s=>(s.duels||0)>=1},
+  {id:"duel3",  e:"🏅", n:"Rey del duelo",        d:"Gana 3 duelos.",                                     t:s=>(s.duelWins||0)>=3},
+  {id:"sim1",   e:"🎯", n:"Valiente",            d:"Termina tu primer simulacro de competencia.",        t:s=>(s.sim&&s.sim.n||0)>=1},
+  {id:"sim9",   e:"🚀", n:"Listo para competir",  d:"Saca 90 % o más en un simulacro.",                  t:s=>(s.sim&&s.sim.best||0)>=90},
+  {id:"first",  e:"🐣", n:"Primer acierto",      d:"Acierta tu primera respuesta en el Quiz.",           t:s=>s.score>=1},
+  {id:"spark",  e:"✨", n:"Chispa",              d:"Alcanza 100 XP.",                                    t:s=>s.xp>=100},
+  {id:"star",   e:"🌟", n:"Estrella",            d:"Alcanza 500 XP.",                                    t:s=>s.xp>=500},
+  {id:"fire5",  e:"🔥", n:"Racha de fuego",      d:"Encadena 5 aciertos seguidos.",                      t:s=>s.bestCombo>=5},
+  {id:"fire10", e:"⚡", n:"Imparable",           d:"Encadena 10 aciertos seguidos.",                     t:s=>s.bestCombo>=10},
+  {id:"days3",  e:"📅", n:"Constante",           d:"Practica 3 días seguidos.",                          t:s=>s.bestStreak>=3},
+  {id:"days7",  e:"🗓️", n:"Disciplina de campeón", d:"Practica 7 días seguidos.",                        t:s=>s.bestStreak>=7},
+  {id:"goal",   e:"🎯", n:"Meta cumplida",       d:"Cumple el reto diario de 10 aciertos.",              t:s=>s.goalsDone>=1},
+  {id:"orator", e:"📜", n:"Maestro de oraciones", d:"Domina 25 oraciones en total.",            t:s=>sentencesMastered()>=25},
+  {id:"bronze", e:"🥉", n:"Medalla de Bronce",   d:"Domina las "+DATA["1"].words.length+" palabras de la Fase 1.",               t:s=>masteredCount("1","words")>=DATA["1"].words.length},
+  {id:"silver", e:"🥈", n:"Medalla de Plata",    d:"Domina las "+DATA["2"].words.length+" palabras de la Fase 2.",               t:s=>masteredCount("2","words")>=DATA["2"].words.length},
+  {id:"gold",   e:"🥇", n:"Medalla de Oro",      d:"Domina las "+DATA["3"].words.length+" palabras de la Fase 3.",               t:s=>masteredCount("3","words")>=DATA["3"].words.length},
+  {id:"champ",  e:"🏆", n:"Gran Campeón",        d:"Domina palabras y oraciones de la Fase 3.",          t:s=>masteredCount("3","words")+masteredCount("3","sentences")>=DATA["3"].words.length+DATA["3"].sentences.length},
+  {id:"crown",  e:"👑", n:"Leyenda del concurso", d:"Domina los "+totalItems()+" ítems de las tres fases.",           t:s=>totalMastered()>=totalItems()}
+];
+
+/* ---------- Estado ---------- */
+let state = { phase:"1", set:"words", mode:"flash", order:[], pos:0, revealed:false, answered:false, combo:0 };
+let P = defaultProgress();
+const STORAGE_KEY = "phonetics_practice_progress_v4";
+let nextTimer = null, modalOpen = false, pendingNext = false, modalQueue = [];
+
+function defaultProgress(){
+  return {w:{day:"",n:0,mo:"",mn:0,t:0}, sid:"", name:"", group:"", minutes:0, days:0, xp:0, score:0, attempts:0, bestCombo:0, streak:0, bestStreak:0, lastDay:"",
+          daily:{date:"", count:0, done:false}, goalsDone:0, mastered:{}, prizes:{},
+          pz:{n:0, ok:0}, sim:{n:0, best:0, last:0, sum:0}};
+}
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ P = Object.assign(defaultProgress(), JSON.parse(raw)); }
+  }catch(e){}
+  try{
+    const valid = {};
+    for(const ph in DATA){ for(const set of ["words","sentences"]){ DATA[ph][set].forEach(r=>{ valid[ph+"|"+set+"|"+r[0]] = 1; }); } }
+    for(const k in P.mastered){ if(!valid[k]) delete P.mastered[k]; }
+  }catch(e){}
+  if(!P.sid){ P.sid = "s"+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); }
+}
+let dirty = false, syncT = null;
+function persist(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(P)); }catch(e){} }
+function saveProgress(){
+  persist();
+  dirty = true; scheduleSync();
+}
+function pc(ph,set){ const n = DATA[ph][set].length; return n ? Math.round(masteredCount(ph,set)/n*1000)/1000 : 0; }
+function domAll(){ let a=0,t=0; for(const ph in DATA){ for(const set of ["words","sentences"]){ a+=masteredCount(ph,set); t+=DATA[ph][set].length; } } return t ? Math.round(a/t*1000)/1000 : 0; }
+function trackPayload(){
+  const ri = rankIndex(P.xp);
+  const m = ph => masteredCount(ph,"words")+masteredCount(ph,"sentences");
+  return {key:TRACK_KEY, id:P.sid, name:P.name, group:P.group, rank:RANKS[ri].name, xp:P.xp,
+          streak:displayStreak(), bestStreak:P.bestStreak, days:P.days||0, minutes:Math.round(P.minutes||0),
+          score:P.score, attempts:P.attempts, m1:m("1"), m2:m("2"), m3:m("3"),
+          prizes:Object.keys(P.prizes).length, last:new Date().toISOString(),
+          p1w:pc("1","words"), p1s:pc("1","sentences"), p2w:pc("2","words"), p2s:pc("2","sentences"), p3w:pc("3","words"), p3s:pc("3","sentences"), dom:domAll(),
+          simN:P.sim.n, simLast:P.sim.last, simBest:P.sim.best, simAvg:P.sim.n ? Math.round(P.sim.sum/P.sim.n) : 0,
+          pzN:P.pz.n, pzOk:P.pz.n ? Math.round(P.pz.ok/P.pz.n*100) : 0};
+}
+/* ---- Envío por correo con Web3Forms (máx. 2 por día y 30 por mes en cada celular) ---- */
+function w3fCan(kind){
+  const t = today(), mo = t.slice(0,7);
+  const w = Object.assign({day:"",n:0,mo:"",mn:0,t:0}, P.w || {});
+  if(w.mo !== mo){ w.mo = mo; w.mn = 0; }
+  if(w.day !== t){ w.day = t; w.n = 0; }
+  P.w = w;
+  if(w.mn >= W3F_MONTH_MAX) return "month";
+  if(kind === "manual") return (w.t && Date.now() - w.t < 300000) ? "recent" : "ok";
+  if(w.n >= W3F_DAY_MAX) return "day";
+  if(kind === "start" && w.n >= 1) return "day";
+  if(kind === "end" && !dirty) return "clean";
+  return "ok";
+}
+function w3fFields(kind){
+  const ri = rankIndex(P.xp);
+  const m = ph => masteredCount(ph,"words")+masteredCount(ph,"sentences");
+  const tt = ph => DATA[ph].words.length+DATA[ph].sentences.length;
+  const pct = P.attempts ? Math.round(P.score/P.attempts*100)+"%" : "-";
+  const cuando = {start:"Inició práctica", end:"Terminó sesión", manual:"Envío manual"}[kind] || kind;
+  let fecha = new Date().toLocaleString("es-NI");
+  try{ fecha = new Date().toLocaleString("es-NI", {timeZone:"America/Managua"}); }catch(e){}
+  return {
+    access_key:W3F_KEY, from_name:"App de Fonética",
+    subject:"Fonética: "+P.name+(P.group ? " ("+P.group+")" : "")+" - "+cuando,
+    estudiante:P.name, grupo:P.group || "-", evento:cuando, fecha_hora:fecha,
+    rango:RANKS[ri].name, xp:String(P.xp), racha_dias:String(displayStreak()), dias_practicados:String(P.days||0),
+    minutos_totales:String(Math.round(P.minutes||0)), aciertos:P.score+" de "+P.attempts+" intentos ("+pct+")",
+    dominados_fase1:m("1")+" de "+tt("1"), dominados_fase2:m("2")+" de "+tt("2"), dominados_fase3:m("3")+" de "+tt("3"),
+    premios:Object.keys(P.prizes).length+" de "+PRIZES.length
+  };
+}
+function w3fSend(kind){
+  const can = w3fCan(kind);
+  if(can !== "ok") return Promise.resolve(can);
+  P.w.n++; P.w.mn++; P.w.t = Date.now(); dirty = false; persist();
+  const body = new URLSearchParams(w3fFields(kind));
+  const url = "https://api.web3forms.com/submit";
+  if(kind === "manual"){
+    return fetch(url, {method:"POST", body, headers:{"Accept":"application/json"}})
+      .then(r=>r.json()).then(j=>j && j.success ? "sent" : "fail").catch(()=>"fail");
+  }
+  try{ fetch(url, {method:"POST", mode:"no-cors", body, keepalive:true}).catch(()=>{}); }catch(e){}
+  return Promise.resolve("sent");
+}
+function showSendBtns(){ document.querySelectorAll(".sendNow").forEach(b=>{ b.style.display = (TRACK_ON && P.name) ? "block" : "none"; }); }
+function sendNowManual(){
+  const bs = document.querySelectorAll(".sendNow");
+  const LBL = "📤 Enviar mi progreso";
+  if(!W3F_ON){ syncNow(true); showToast("✅ Progreso enviado"); return; }
+  bs.forEach(b=>{ b.disabled = true; b.textContent = "Enviando…"; });
+  w3fSend("manual").then(r=>{
+    bs.forEach(b=>{ b.disabled = false; b.textContent = LBL; });
+    showToast({sent:"✅ Progreso enviado", recent:"⏳ Ya enviaste tu progreso hace poco. Inténtalo en unos minutos.",
+               month:"Llegaste al límite de envíos de este mes.", fail:"❌ No se pudo enviar. Revisa tu internet e inténtalo de nuevo."}[r] || "Listo");
+  });
+}
+function syncNow(force, kind){
+  if(!TRACK_ON || !P.name) return;
+  if(W3F_ON){ w3fSend(kind || (force ? "start" : "end")); return; }
+  if(!dirty && !force) return;
+  clearTimeout(syncT); syncT = null; dirty = false;
+  const body = JSON.stringify(trackPayload());
+  try{
+    if(document.visibilityState === "hidden" && navigator.sendBeacon){
+      navigator.sendBeacon(TRACK_URL, new Blob([body], {type:"text/plain"}));
+    } else {
+      fetch(TRACK_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body, keepalive:true}).catch(()=>{});
+    }
+  }catch(e){}
+}
+function scheduleSync(){
+  if(!TRACK_ON || W3F_ON || !P.name || syncT) return;
+  syncT = setTimeout(()=>{ syncT = null; syncNow(); }, 8000);
+}
+
+/* ---------- Fechas, racha y meta diaria ---------- */
+function dayStr(d){
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function today(){ return dayStr(new Date()); }
+function yesterday(){ const d=new Date(); d.setDate(d.getDate()-1); return dayStr(d); }
+function touchDay(){
+  const t = today();
+  if(P.lastDay !== t){
+    P.days = (P.days||0) + 1;
+    P.streak = (P.lastDay === yesterday()) ? P.streak + 1 : 1;
+    P.lastDay = t;
+    if(P.streak > P.bestStreak) P.bestStreak = P.streak;
+  }
+  if(P.daily.date !== t) P.daily = {date:t, count:0, done:false};
+}
+function displayStreak(){
+  return (P.lastDay === today() || P.lastDay === yesterday()) ? P.streak : 0;
+}
+function dailyCount(){ return P.daily.date === today() ? P.daily.count : 0; }
+
+/* ---------- Dominio (ítems acertados en el Quiz) ---------- */
+function mkey(phase,set,text){ return phase+"|"+set+"|"+text; }
+function masteredCount(phase,set){
+  const prefix = phase+"|"+set+"|";
+  let n = 0;
+  for(const k in P.mastered){ if(k.indexOf(prefix) === 0) n++; }
+  return n;
+}
+function sentencesMastered(){ return masteredCount("1","sentences")+masteredCount("2","sentences")+masteredCount("3","sentences"); }
+function totalMastered(){ return Object.keys(P.mastered).length; }
+function totalItems(){
+  let n=0; for(const p in DATA){ n += DATA[p].words.length + DATA[p].sentences.length; } return n;
+}
+
+/* ---------- Rangos ---------- */
+function rankIndex(xp){
+  let r = 0;
+  for(let i=0;i<RANKS.length;i++){ if(xp >= RANKS[i].min) r = i; }
+  return r;
+}
+
+/* ---------- UI helpers ---------- */
+function $(id){ return document.getElementById(id); }
+function showToast(msg){
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>t.classList.remove("show"), 2400);
+}
+function confetti(){
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const colors = ["#F5B400","#C8102E","#123E8C","#2e9e5b","#ffffff","#ff7aa2"];
+  for(let i=0;i<44;i++){
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random()*100+"vw";
+    c.style.background = colors[Math.floor(Math.random()*colors.length)];
+    c.style.animationDuration = (1.8+Math.random()*1.8)+"s";
+    c.style.animationDelay = (Math.random()*0.5)+"s";
+    c.style.transform = "rotate("+Math.floor(Math.random()*360)+"deg)";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 4200);
+  }
+}
+function xpPop(n){
+  const card = $("card");
+  const el = document.createElement("div");
+  el.className = "xppop";
+  el.textContent = "+"+n+" XP";
+  card.appendChild(el);
+  setTimeout(()=>el.remove(), 1200);
+}
+
+/* ---------- Cola de modales (premios y rangos) ---------- */
+function enqueue(m){ modalQueue.push(m); if(!modalOpen) openNextModal(); }
+function openNextModal(){
+  const m = modalQueue.shift();
+  if(!m){
+    modalOpen = false;
+    $("prizeOverlay").classList.remove("show");
+    if(pendingNext){ pendingNext = false; next(); }
+    return;
+  }
+  modalOpen = true;
+  $("mEmoji").textContent = m.emoji;
+  $("mTitle").textContent = m.title;
+  $("mName").textContent = m.name;
+  $("mDesc").textContent = m.desc;
+  $("prizeOverlay").classList.add("show");
+  confetti();
+}
+$("mClose").addEventListener("click", openNextModal);
+
+function addXP(n){
+  if(n <= 0) return;
+  const before = rankIndex(P.xp);
+  P.xp += n;
+  const after = rankIndex(P.xp);
+  xpPop(n);
+  if(after > before){
+    const r = RANKS[after];
+    enqueue({emoji:r.emoji, title:"¡Subiste de rango!", name:r.name, desc:"Ya tienes "+P.xp+" XP. ¡Sigue practicando para llegar a "+(RANKS[after+1]?RANKS[after+1].name:"la cima")+"!"});
+  }
+}
+function checkPrizes(){
+  PRIZES.forEach(pz=>{
+    if(!P.prizes[pz.id] && pz.t(P)){
+      P.prizes[pz.id] = Date.now();
+      enqueue({emoji:pz.e, title:"¡Nuevo premio desbloqueado!", name:pz.n, desc:pz.d});
+    }
+  });
+}
+
+/* ---------- Vitrina ---------- */
+function openCabinet(){
+  const grid = $("pgrid");
+  grid.innerHTML = "";
+  let n = 0;
+  PRIZES.forEach(pz=>{
+    const got = !!P.prizes[pz.id];
+    if(got) n++;
+    const d = document.createElement("div");
+    d.className = "prize"+(got?"":" locked");
+    d.innerHTML = '<div class="pe"></div><div class="pn"></div><div class="pd"></div>';
+    d.children[0].textContent = got ? pz.e : "🔒";
+    d.children[1].textContent = pz.n;
+    d.children[2].textContent = pz.d;
+    grid.appendChild(d);
+  });
+  $("cabinetCount").textContent = n+" de "+PRIZES.length+" premios desbloqueados";
+  $("cabinetOverlay").classList.add("show");
+}
+$("cabinetClose").addEventListener("click", ()=>$("cabinetOverlay").classList.remove("show"));
+$("homePrizesBtn").addEventListener("click", openCabinet);
+$("studyPrizesBtn").addEventListener("click", openCabinet);
+
+/* ---------- Pistas IPA -> escritura ---------- */
+function openTips(){
+  const grid = $("tipsGrid");
+  if(!grid.children.length){
+    TIPS.forEach(t=>{
+      const d = document.createElement("div");
+      d.className = "prize";
+      d.innerHTML = '<div class="pe"></div><div class="pn"></div><div class="pd"></div>';
+      d.children[0].textContent = "/"+t[0]+"/";
+      d.children[1].textContent = t[1];
+      d.children[2].textContent = t[2];
+      grid.appendChild(d);
+    });
+  }
+  $("tipsOverlay").classList.add("show");
+}
+$("tipsClose").addEventListener("click", ()=>$("tipsOverlay").classList.remove("show"));
+$("homeTipsBtn").addEventListener("click", openTips);
+$("studyTipsBtn").addEventListener("click", openTips);
+
+/* ---------- HUD y home ---------- */
+function updateHud(){
+  const ri = rankIndex(P.xp), r = RANKS[ri], nx = RANKS[ri+1];
+  $("sRankEmoji").textContent = r.emoji;
+  $("sRankName").textContent = r.name;
+  $("sStreak").textContent = displayStreak();
+  $("sDaily").textContent = Math.min(dailyCount(), DAILY_GOAL);
+  $("sXp").textContent = P.xp+" XP";
+  if(nx){
+    const pct = ((P.xp - r.min)/(nx.min - r.min))*100;
+    $("xpfill").style.width = Math.max(0,Math.min(100,pct))+"%";
+    $("sNext").textContent = (nx.min - P.xp)+" XP para "+nx.emoji+" "+nx.name;
+  } else {
+    $("xpfill").style.width = "100%";
+    $("sNext").textContent = "¡Nivel máximo!";
+  }
+}
+function updateCountdown(){
+  const el = $("countdown"); if(!el) return;
+  const now = new Date(), t0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Math.round((new Date(2026, 9, 31) - t0) / 86400000);
+  let h;
+  if(days > 1) h = "⏳ Faltan "+days+" días para la competencia real<small>Será el 31 de octubre. ¡Cada día de práctica cuenta!</small>";
+  else if(days === 1) h = "⏳ ¡Mañana es la competencia real!<small>Haz un último repaso y descansa bien.</small>";
+  else if(days === 0) h = "🏆 ¡Hoy es la competencia real!<small>¡Mucha suerte! Ya hiciste tu parte.</small>";
+  else h = "🏆 La competencia real fue el 31 de octubre<small>¡Gracias por practicar!</small>";
+  el.innerHTML = h;
+}
+function updateHome(){
+  updateCountdown();
+  const r = RANKS[rankIndex(P.xp)];
+  $("hRank").textContent = r.emoji;
+  $("hRankName").textContent = r.name;
+  $("hXp").textContent = P.xp;
+  $("hStreak").textContent = displayStreak();
+  $("hPrizes").textContent = Object.keys(P.prizes).length+"/"+PRIZES.length;
+  $("greet").textContent = "Lee el IPA, escribe la palabra, gana premios y llega a la gran final.";
+  $("startBtn").textContent = P.xp > 0 ? "Continuar práctica ➜" : "Comenzar práctica ➜";
+  const need = TRACK_ON && !P.name;
+  $("regCard").style.display = need ? "block" : "none";
+  const who = $("whoLine");
+  if(TRACK_ON && P.name){
+    who.style.display = "block";
+    who.innerHTML = 'Practicando como <b></b>'+(P.group ? ' ('+'<span></span>'+')' : '')+' · <a href="#" id="chgName">cambiar</a><br>☁️ Tu progreso se envía a la coordinadora de fonética.';
+    who.querySelector("b").textContent = P.name;
+    const sp = who.querySelector("span"); if(sp) sp.textContent = P.group;
+    $("chgName").addEventListener("click", e=>{
+      e.preventDefault();
+      if(!confirm("Se empezará un perfil nuevo en este celular (otro estudiante, desde cero). El progreso de "+P.name+" ya enviado a la coordinadora no se borra. ¿Continuar?")) return;
+      syncNow(true, "end");
+      P = defaultProgress(); P.sid = "s"+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
+      saveProgress(); state.combo = 0; newOrder(); updateHome();
+    });
+  } else { who.style.display = "none"; }
+  document.querySelectorAll(".sendNow").forEach(b=>{ b.style.display = (TRACK_ON && P.name) ? "block" : "none"; });
+}
+
+/* ---------- Estudio ---------- */
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function currentList(){ return DATA[state.phase][state.set]; }
+function fixIpaWrap(str){ return str.replace(/([ˈˌ])/g, "⁠$1"); }
+function cancelTimer(){ if(nextTimer){ clearTimeout(nextTimer); } nextTimer = null; }
+function newOrder(){
+  state.order = shuffle(currentList().map((_,i)=>i));
+  state.pos = 0;
+}
+
+function updatePhaseHint(){
+  const el = $("phaseHint"), ph = +state.phase;
+  if(ph > 1){
+    const pv = String(ph-1);
+    const tot = DATA[pv].words.length + DATA[pv].sentences.length;
+    const got = masteredCount(pv,"words") + masteredCount(pv,"sentences");
+    if(got < Math.ceil(tot*0.8)){
+      el.style.display = "block";
+      el.textContent = "💡 Recuerda: en el concurso solo llegas a esta fase si ganas la anterior. Primero domina la Fase "+pv+" (llevas "+got+" de "+tot+").";
+      return;
+    }
+  }
+  el.style.display = "none";
+}
+function render(){
+  updatePhaseHint();
+  const list = currentList();
+  const idx = state.order[state.pos];
+  const [answer, ipa, eje] = list[idx];
+  state.answered = false;
+
+  const ipaEl = $("ipa");
+  ipaEl.textContent = fixIpaWrap(ipa);
+  ipaEl.classList.toggle("long", ipa.length > 40);
+  ipaEl.classList.toggle("sent", state.set === "sentences");
+  $("answer").classList.toggle("sent", state.set === "sentences");
+  $("eje").textContent = eje;
+  $("posLabel").textContent = state.pos+1;
+  $("totalLabel").textContent = list.length;
+  $("scoreLabel").textContent = P.score;
+  $("attemptsLabel").textContent = P.attempts;
+  $("masteredLabel").textContent = masteredCount(state.phase,state.set);
+  $("masteredTotal").textContent = list.length;
+  $("progressfill").style.width = ((state.pos/list.length)*100)+"%";
+  $("tabWords").textContent = "Palabras ("+DATA[state.phase].words.length+")";
+  $("tabSentences").textContent = "Oraciones ("+DATA[state.phase].sentences.length+")";
+  const cb = $("combo");
+  if(state.combo >= 2){ cb.style.display = "block"; cb.textContent = "🔥 x"+state.combo; } else { cb.style.display = "none"; }
+  updateHud();
+
+  $("flashControls").style.display = state.mode === "flash" ? "flex" : "none";
+  $("boardControls").style.display = state.mode === "board" ? "block" : "none";
+  $("quizControls").style.display = state.mode === "quiz" ? "block" : "none";
+  if(state.mode === "flash"){
+    $("answer").textContent = state.revealed ? answer : "";
+    $("hint").textContent = state.revealed ? "" : 'Toca "Revelar" para ver la respuesta';
+  } else if(state.mode === "board"){
+    $("answer").textContent = state.revealed ? answer : "";
+    $("hint").textContent = state.revealed ? "" : "✍️ Escríbelo en tu pizarra o en un papel. Después toca Revelar.";
+    $("pzBefore").style.display = state.revealed ? "none" : "flex";
+    $("pzAfter").style.display = state.revealed ? "block" : "none";
+  } else {
+    $("answer").textContent = "";
+    $("hint").textContent = "";
+    $("quizInput").value = "";
+    $("quizInput").placeholder = state.set === "words" ? "Escribe la palabra en inglés..." : "Escribe la oración completa...";
+    $("feedback").textContent = "";
+    $("feedback").className = "feedback";
+    $("quizInput").focus();
+  }
+}
+
+function normalize(s){
+  let t = s.trim().toLowerCase()
+    .replace(/[‘’]/g,"'")
+    .replace(/[^a-z0-9' ]+/g,"")
+    .replace(/\s+/g," ").trim();
+  for(const [re,to] of VARIANTS){ t = t.replace(re,to); }
+  return t;
+}
+
+function next(){
+  cancelTimer();
+  state.revealed = false;
+  state.pos = (state.pos+1) % state.order.length;
+  if(state.pos === 0) state.order = shuffle(state.order);
+  render();
+}
+
+function prev(){
+  cancelTimer();
+  state.revealed = false;
+  state.pos = (state.pos - 1 + state.order.length) % state.order.length;
+  render();
+}
+function onNextClick(){
+  // En Tarjetas, avanzar después de revelar da un pequeño XP de estudio
+  if(state.mode === "flash" && state.revealed){
+    touchDay();
+    addXP(2);
+    saveProgress();
+    checkPrizes();
+  }
+  next();
+}
+function onSkip(){
+  state.combo = 0;
+  next();
+}
+
+function setActive(sel, el){
+  document.querySelectorAll(sel).forEach(x=>x.classList.remove("active"));
+  el.classList.add("active");
+}
+document.querySelectorAll(".phase").forEach(p=>{
+  p.addEventListener("click", ()=>{
+    cancelTimer(); setActive(".phase", p);
+    state.phase = p.dataset.phase; state.revealed = false; state.combo = 0;
+    newOrder(); render();
+  });
+});
+document.querySelectorAll(".tab").forEach(t=>{
+  t.addEventListener("click", ()=>{
+    cancelTimer(); setActive(".tab", t);
+    state.set = t.dataset.set; state.revealed = false; state.combo = 0;
+    newOrder(); render();
+  });
+});
+document.querySelectorAll(".mode").forEach(m=>{
+  m.addEventListener("click", ()=>{
+    cancelTimer(); setActive(".mode", m);
+    state.mode = m.dataset.mode; state.revealed = false;
+    render();
+  });
+});
+
+$("revealBtn").addEventListener("click", ()=>{ state.revealed = true; render(); });
+$("nextBtn").addEventListener("click", onNextClick);
+$("prevBtn").addEventListener("click", prev);
+$("skipBtn").addEventListener("click", onSkip);
+function bumpDaily(){
+  P.daily.count++;
+  if(!P.daily.done && P.daily.count >= DAILY_GOAL){
+    P.daily.done = true; P.goalsDone++;
+    addXP(DAILY_BONUS);
+    showToast("🎯 ¡Meta de hoy cumplida! +"+DAILY_BONUS+" XP");
+  }
+}
+function markBoard(ok){
+  if(!state.revealed) return;
+  touchDay();
+  P.pz.n++;
+  if(ok){ P.pz.ok++; addXP(5); bumpDaily(); } else { addXP(1); }
+  saveProgress(); checkPrizes(); updateHud();
+  next();
+}
+$("pzReveal").addEventListener("click", ()=>{ state.revealed = true; render(); });
+$("pzPrev").addEventListener("click", prev);
+$("pzSkip").addEventListener("click", next);
+$("pzOk").addEventListener("click", ()=>markBoard(true));
+$("pzNo").addEventListener("click", ()=>markBoard(false));
+$("checkBtn").addEventListener("click", checkAnswer);
+$("quizInput").addEventListener("keydown", e=>{ if(e.key === "Enter") checkAnswer(); });
+
+function checkAnswer(){
+  if(state.answered) return;
+  const list = currentList();
+  const idx = state.order[state.pos];
+  const [answer] = list[idx];
+  const given = $("quizInput").value;
+  const fb = $("feedback");
+  if(!given.trim()){ fb.className = "feedback"; fb.textContent = "✍️ Escribe tu respuesta primero."; $("quizInput").focus(); return; }
+  const card = $("card");
+  state.answered = true;
+  touchDay();
+  P.attempts++;
+
+  const g = normalize(given);
+  const accepted = [answer].concat(state.set === "words" ? (ALT[answer.toLowerCase()] || []) : []);
+  const hit = accepted.find(a => normalize(a) === g);
+  if(hit){
+    P.score++;
+    state.combo++;
+    if(state.combo > P.bestCombo) P.bestCombo = state.combo;
+    const key = mkey(state.phase,state.set,answer);
+    const isNew = !P.mastered[key];
+    P.mastered[key] = 1;
+    const gain = (isNew ? 10 : 4) + Math.min(state.combo-1, 5)*2;
+    const isAlt = normalize(hit) !== normalize(answer);
+    fb.textContent = isAlt
+      ? "✅ ¡Válido! Suena igual que "+answer+" (se acepta "+hit+")"
+      : "✅ "+GOOD[Math.floor(Math.random()*GOOD.length)]+" "+answer+(isNew?"  · ¡Nuevo dominado!":"");
+    fb.className = "feedback good";
+    card.classList.remove("shake"); card.classList.add("pop");
+    // meta diaria
+    P.daily.count++;
+    addXP(gain);
+    if(!P.daily.done && P.daily.count >= DAILY_GOAL){
+      P.daily.done = true; P.goalsDone++;
+      addXP(DAILY_BONUS);
+      showToast("🎯 ¡Meta de hoy cumplida! +"+DAILY_BONUS+" XP");
+    }
+  } else {
+    state.combo = 0;
+    fb.textContent = "❌ ¡Casi, tú puedes! Era: "+answer;
+    fb.className = "feedback bad";
+    card.classList.remove("pop"); card.classList.add("shake");
+  }
+  setTimeout(()=>card.classList.remove("pop","shake"), 400);
+  saveProgress();
+  checkPrizes();
+  saveProgress();
+  $("scoreLabel").textContent = P.score;
+  $("attemptsLabel").textContent = P.attempts;
+  $("masteredLabel").textContent = masteredCount(state.phase,state.set);
+  const cb = $("combo");
+  if(state.combo >= 2){ cb.style.display = "block"; cb.textContent = "🔥 x"+state.combo; } else { cb.style.display = "none"; }
+  updateHud();
+  nextTimer = setTimeout(()=>{
+    nextTimer = null;
+    if(modalOpen){ pendingNext = true; } else { next(); }
+  }, state.set === "sentences" ? 2200 : 1400);
+}
+
+let resetArmed=null;
+$("resetLink").addEventListener("click", ()=>{
+  const el=$("resetLink");
+  if(!resetArmed){
+    el.textContent="⚠️ ¿Seguro? Toca otra vez para borrar todo";
+    el.classList.add("armed");
+    resetArmed=setTimeout(()=>{ resetArmed=null; el.textContent="Reiniciar todo mi progreso"; el.classList.remove("armed"); },5000);
+    return;
+  }
+  clearTimeout(resetArmed); resetArmed=null;
+  el.textContent="✅ Progreso reiniciado"; el.classList.remove("armed");
+  setTimeout(()=>{ el.textContent="Reiniciar todo mi progreso"; },2500);
+  if(nextTimer){ clearTimeout(nextTimer); nextTimer=null; }
+  const keep={sid:P.sid,name:P.name,group:P.group};
+  P = defaultProgress(); P.sid=keep.sid; P.name=keep.name; P.group=keep.group;
+  state.combo = 0;
+  saveProgress();
+  newOrder(); render(); updateHome();
+});
+
+/* ---------- Navegación ---------- */
+function ensureRegistered(){
+  if(!TRACK_ON || P.name) return true;
+  const sv = $("stuSel").value;
+  const nm = (sv === "__new" ? $("stuName").value : sv).replace(/\s+/g," ").trim();
+  if(!sv){ $("regErr").textContent = "Elige tu nombre para empezar."; $("stuSel").focus(); $("regCard").scrollIntoView({block:"center"}); return false; }
+  if(nm.length < 3){ $("regErr").textContent = "Escribe tu nombre para empezar."; $("stuName").focus(); return false; }
+  P.name = nm; P.group = ""; showSendBtns();
+  $("regErr").textContent = "";
+  return true;
+}
+$("startBtn").addEventListener("click", ()=>{
+  if(!ensureRegistered()) return;
+  touchDay(); saveProgress(); syncNow(true);
+  $("homeScreen").style.display = "none";
+  $("studyScreen").style.display = "block";
+  window.scrollTo(0,0);
+  render();
+});
+$("backBtn").addEventListener("click", ()=>{
+  cancelTimer(); pendingNext = false;
+  $("studyScreen").style.display = "none";
+  $("homeScreen").style.display = "flex";
+  updateHome();
+});
+
+
+/* ================= SIMULACRO (como la competencia real) ================= */
+const SIM_N = 10;
+const SIM_SECS = {words:30, sentences:75};
+let S = null, simTick = null;
+function simFresh(){ return {step:"intro", phase:"1", items:[], i:0, res:[], t0:0, secs:30, xp:0}; }
+function simStop(){ if(simTick){ clearInterval(simTick); simTick = null; } }
+function simGrade(set, answer, typed){
+  const g = normalize(typed);
+  if(!g) return false;
+  const accepted = [answer].concat(set === "words" ? (ALT[answer.toLowerCase()] || []) : []);
+  return accepted.some(a => normalize(a) === g);
+}
+function simBuild(phase){
+  const half = SIM_N/2;
+  const pick = (set,n)=>shuffle(DATA[phase][set].map((_,i)=>i)).slice(0,n).map(i=>({set:set, idx:i}));
+  return shuffle(pick("words",half).concat(pick("sentences",half)));
+}
+function simStart(phase){
+  S.phase = phase; S.items = simBuild(phase); S.i = 0; S.res = []; S.xp = 0;
+  S.step = "q"; simRender();
+}
+function simBegin(){
+  const it = S.items[S.i];
+  S.secs = SIM_SECS[it.set]; S.t0 = Date.now();
+  simStop();
+  simTick = setInterval(()=>{
+    if(!S || S.step !== "q"){ simStop(); return; }
+    const left = Math.max(0, S.secs - (Date.now()-S.t0)/1000);
+    const tm = $("sTime"), br = $("sBar");
+    if(tm){ tm.textContent = Math.ceil(left); tm.classList.toggle("up", left <= 5); }
+    if(br) br.style.width = (left/S.secs*100)+"%";
+    if(left <= 0) simSubmit(true);
+  }, 250);
+}
+function simSubmit(auto){
+  if(!S || S.step !== "q") return;
+  const it = S.items[S.i];
+  const inp = $("sInput");
+  const typed = inp ? inp.value.trim().slice(0,200) : "";
+  const row = DATA[S.phase][it.set][it.idx];
+  S.res.push({set:it.set, idx:it.idx, typed:typed, ok:simGrade(it.set, row[0], typed)});
+  S.i++;
+  if(S.i >= S.items.length){ simFinish(); } else { simRender(); }
+}
+function simFinish(){
+  simStop();
+  const ok = S.res.filter(r=>r.ok).length;
+  const pct = Math.round(ok/S.res.length*100);
+  touchDay();
+  S.res.forEach(r=>{ if(r.ok){ P.mastered[mkey(S.phase, r.set, DATA[S.phase][r.set][r.idx][0])] = 1; } });
+  P.sim.n++; P.sim.last = pct; P.sim.sum += pct; if(pct > P.sim.best) P.sim.best = pct;
+  S.xp = ok*10 + 20; S.pct = pct; S.ok = ok;
+  S.step = "result"; simRender();
+  addXP(S.xp);
+  saveProgress(); checkPrizes(); syncNow(true);
+  if(pct >= 80) confetti();
+}
+function simRender(){
+  const root = $("sRoot"); if(!S) return;
+  let h = "";
+  if(S.step === "intro"){
+    h = '<h1 class="shead">🎯 Simulacro de competencia</h1><div class="sub">Practica como si fuera la competencia real</div>'+
+      '<div class="homecard dsel">'+
+      '<label class="setrow">Fase <select id="sPhase"><option value="1">Fase 1 · Básico</option><option value="2">Fase 2 · Intermedio</option><option value="3">Fase 3 · Experto</option></select></label>'+
+      '<ul class="slist">'+
+      '<li><b>10 ítems</b> al azar: 5 palabras y 5 oraciones.</li>'+
+      '<li>Tienes <b>'+SIM_SECS.words+' segundos</b> por palabra y <b>'+SIM_SECS.sentences+' segundos</b> por oración.</li>'+
+      '<li><b>Sin pistas</b> y sin revelar la respuesta.</li>'+
+      '<li>No sabrás si acertaste hasta el final.</li>'+
+      '<li>Si sales a la mitad, el simulacro no se guarda.</li>'+
+      '</ul>'+
+      (P.sim.n ? '<div class="dnote">Simulacros hechos: <b>'+P.sim.n+'</b> · Último: <b>'+P.sim.last+' %</b> · Mejor: <b>'+P.sim.best+' %</b></div>' : '')+
+      '<button class="startbtn gold" data-s="start">¡Empezar simulacro!</button></div>';
+  } else if(S.step === "q"){
+    const it = S.items[S.i], row = DATA[S.phase][it.set][it.idx];
+    const isS = it.set === "sentences";
+    const last = S.i === S.items.length-1;
+    h = '<div class="cmeta"><span>'+D_PHASES[S.phase]+'</span><span>Ítem '+(S.i+1)+' de '+S.items.length+' · '+(isS ? "Oración" : "Palabra")+'</span></div>'+
+      '<div class="ccard"><div class="cipa'+(isS ? " sent" : (row[1].length > 22 ? " long" : ""))+'">'+esc(fixIpaWrap(row[1]))+'</div>'+
+      '<div class="ctimewrap"><div class="ctime" id="sTime">'+SIM_SECS[it.set]+'</div><div class="cbarbg"><div class="cbar" id="sBar" style="width:100%"></div></div></div></div>'+
+      '<div style="margin-top:14px"><input type="text" id="sInput" class="dinput" placeholder="'+(isS ? "Escribe la oración completa…" : "Escribe la palabra…")+'" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">'+
+      '<button class="startbtn" data-s="next" style="margin-top:10px">'+(last ? "Terminar ✔" : "Siguiente ➜")+'</button></div>';
+  } else {
+    const msg = S.pct >= 90 ? ["🏆","¡Listo para competir!"] : S.pct >= 70 ? ["🌟","¡Vas muy bien! Repasa lo que fallaste."] :
+                S.pct >= 50 ? ["💪","Buen avance. Repasa en Tarjetas y Pizarra lo que fallaste."] : ["📚","Sigue practicando: repasa en Tarjetas y Pizarra y vuelve a intentarlo."];
+    h = '<div class="cresult"><div class="bigemoji">'+msg[0]+'</div><h2>'+S.ok+' de '+S.res.length+' · '+S.pct+' %</h2><div class="greet">'+msg[1]+'</div></div>'+
+      '<div class="dnote" style="margin:0 0 6px">'+D_PHASES[S.phase]+' · Ganaste <b>+'+S.xp+' XP</b> · Mejor simulacro: <b>'+P.sim.best+' %</b></div>';
+    const fails = S.res.filter(r=>!r.ok);
+    if(fails.length){
+      h += '<div class="bsec">Para repasar</div>';
+      fails.forEach(r=>{
+        const row = DATA[S.phase][r.set][r.idx];
+        h += '<div class="sfail"><div class="sipa">'+esc(fixIpaWrap(row[1]))+'</div>'+
+             '<div><span class="sbad">Escribiste:</span> '+(r.typed ? esc(r.typed) : "(sin respuesta)")+'</div>'+
+             '<div><span class="sok">Correcta:</span> '+esc(row[0])+'</div></div>';
+      });
+    } else {
+      h += '<div class="dnote">¡Sin errores! 🎉</div>';
+    }
+    h += '<button class="startbtn gold" data-s="again" style="margin-top:14px">🔁 Otro simulacro</button>'+
+         '<button class="ghostbtn" data-s="home" style="margin-top:10px">🏠 Volver al inicio</button>';
+  }
+  root.innerHTML = h;
+  if(S.step === "q"){ simBegin(); const i = $("sInput"); if(i) i.focus(); }
+  window.scrollTo(0,0);
+}
+$("sRoot").addEventListener("click", e=>{
+  const b = e.target.closest("[data-s]"); if(!b || !S) return;
+  const a = b.dataset.s;
+  if(a === "start"){ simStart($("sPhase").value); }
+  else if(a === "next"){ simSubmit(false); }
+  else if(a === "again"){ S = simFresh(); simRender(); }
+  else if(a === "home"){ $("sBack").click(); }
+});
+$("sRoot").addEventListener("keydown", e=>{ if(e.key === "Enter" && e.target.id === "sInput") simSubmit(false); });
+$("simBtn").addEventListener("click", ()=>{
+  if(!ensureRegistered()) return;
+  saveProgress(); syncNow(true);
+  S = simFresh();
+  $("homeScreen").style.display = "none";
+  $("simScreen").style.display = "block";
+  simRender();
+});
+$("sBack").addEventListener("click", ()=>{
+  simStop(); S = null;
+  $("simScreen").style.display = "none";
+  $("homeScreen").style.display = "flex";
+  updateHome();
+});
+
+/* ================= DUELO 1 VS 1 (peer a peer, sin cuentas) ================= */
+function esc(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+const D_PREFIX = "fonetica-duelo-";
+const D_ALPHA = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+const D_PHASES = {"1":"Fase 1 · Básico","2":"Fase 2 · Intermedio","3":"Fase 3 · Experto"};
+let D = null;
+
+function dFresh(){
+  return {role:null, peer:null, conn:null, code:"", step:"menu", msg:"",
+          cfg:{phase:"1", n:5, secs:30, seq:[]}, i:-1, my:[], opp:[], t0:0, timer:null, tmo:null, rewarded:false};
+}
+function dClear(){
+  if(!D) return;
+  if(D.timer){ clearInterval(D.timer); D.timer = null; }
+  if(D.tmo){ clearTimeout(D.tmo); D.tmo = null; }
+}
+function dClose(){
+  dClear();
+  try{ if(D && D.conn) D.conn.close(); }catch(e){}
+  try{ if(D && D.peer) D.peer.destroy(); }catch(e){}
+  D = null;
+}
+function dLoadPeer(){
+  return new Promise((resolve,reject)=>{
+    if(window.Peer){ resolve(window.Peer); return; }
+    const urls = ["https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js","https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"];
+    let k = 0;
+    const tryNext = ()=>{
+      if(k >= urls.length){ reject(new Error("load")); return; }
+      const sc = document.createElement("script");
+      sc.src = urls[k++];
+      const to = setTimeout(()=>{ sc.onerror = null; sc.onload = null; tryNext(); }, 8000);
+      sc.onload = ()=>{ clearTimeout(to); window.Peer ? resolve(window.Peer) : tryNext(); };
+      sc.onerror = ()=>{ clearTimeout(to); tryNext(); };
+      document.head.appendChild(sc);
+    };
+    tryNext();
+  });
+}
+const DUEL_BLOCKED = "El servicio de conexión no responde. Puede estar bloqueado en esta red o en esta vista previa. Abre la página desde su enlace real y prueba con datos móviles.";
+function dErrCode(err){ return (err && err.type) ? " (código: "+err.type+")" : ""; }
+function dGenCode(){
+  let c = ""; for(let i=0;i<4;i++) c += D_ALPHA[Math.floor(Math.random()*D_ALPHA.length)];
+  return c;
+}
+function dGrade(phase, idx, typed){
+  const answer = DATA[phase].words[idx][0];
+  const g = normalize(typed || "");
+  if(!g) return false;
+  return [answer].concat(ALT[answer.toLowerCase()] || []).some(a => normalize(a) === g);
+}
+function dPts(me, op){
+  if(!me || !me.ok) return 0;
+  return 10 + ((!op || !op.ok || me.ms < op.ms) ? 5 : 0);
+}
+function dTotals(){
+  let a = 0, b = 0;
+  for(let r=0;r<D.cfg.n;r++){ a += dPts(D.my[r], D.opp[r]); b += dPts(D.opp[r], D.my[r]); }
+  return [a,b];
+}
+function dSend(o){ try{ if(D && D.conn && D.conn.open !== false) D.conn.send(o); }catch(e){} }
+
+/* ----- conexión ----- */
+function dCreate(){
+  D.role = "host"; D.step = "connecting"; D.msg = "Conectando…"; dRender();
+  dLoadPeer().then(Peer=>{
+    if(!D) return;
+    let tries = 0;
+    const open = ()=>{
+      if(!D) return;
+      const code = dGenCode();
+      const peer = new Peer(D_PREFIX + code);
+      D.peer = peer;
+      if(D.tmo) clearTimeout(D.tmo);
+      D.tmo = setTimeout(()=>{ if(D && D.step === "connecting"){ D.step = "error"; D.msg = DUEL_BLOCKED; dRender(); } }, 12000);
+      peer.on("open", ()=>{
+        if(!D) return;
+        if(D.tmo){ clearTimeout(D.tmo); D.tmo = null; }
+        D.code = code; D.step = "lobby-host"; dRender();
+      });
+      peer.on("connection", conn=>{
+        if(!D) return;
+        if(D.conn){ try{ conn.close(); }catch(e){} return; }
+        D.conn = conn; dHook(conn);
+        const go = ()=>{ if(D){ D.step = "settings"; dRender(); } };
+        if(conn.open) go(); else conn.on("open", go);
+      });
+      peer.on("error", err=>{
+        if(!D) return;
+        if(err && err.type === "unavailable-id" && tries++ < 5){ try{ peer.destroy(); }catch(e){} open(); return; }
+        D.step = "error"; D.msg = "No se pudo crear el duelo. Revisa tu conexión a internet e inténtalo de nuevo." + dErrCode(err); dRender();
+      });
+    };
+    open();
+  }).catch(()=>{
+    if(D){ D.step = "error"; D.msg = "No se pudo cargar el servicio de conexión (sin internet o bloqueado en esta red). Abre la página desde su enlace real."; dRender(); }
+  });
+}
+function dJoin(code){
+  code = (code || "").toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if(code.length !== 4){ D.msg = "El código tiene 4 caracteres."; dRender(); return; }
+  D.role = "guest"; D.code = code; D.step = "connecting"; D.msg = "Conectando…"; dRender();
+  dLoadPeer().then(Peer=>{
+    if(!D) return;
+    const peer = new Peer();
+    D.peer = peer;
+    D.tmo = setTimeout(()=>{ if(D && D.step === "connecting"){ D.step = "error"; D.msg = DUEL_BLOCKED; dRender(); } }, 12000);
+    peer.on("open", ()=>{
+      if(!D) return;
+      if(D.tmo){ clearTimeout(D.tmo); D.tmo = null; }
+      const conn = peer.connect(D_PREFIX + code, {reliable:true});
+      D.conn = conn; dHook(conn);
+      D.tmo = setTimeout(()=>{ if(D && D.step === "connecting"){ D.step = "error"; D.msg = "No se pudo conectar con ese código. Revisa que sea correcto y que tu rival ya haya creado el duelo."; dRender(); } }, 12000);
+      conn.on("open", ()=>{ if(!D) return; if(D.tmo){ clearTimeout(D.tmo); D.tmo = null; } D.step = "wait-settings"; dRender(); });
+    });
+    peer.on("error", err=>{
+      if(!D) return;
+      D.step = "error";
+      D.msg = (err && err.type === "peer-unavailable") ? "No existe un duelo con ese código." : "No se pudo conectar. Revisa tu conexión a internet." + dErrCode(err);
+      dRender();
+    });
+  }).catch(()=>{
+    if(D){ D.step = "error"; D.msg = "No se pudo cargar el servicio de conexión. Verifica que tengas internet."; dRender(); }
+  });
+}
+function oppN(){ return esc((D && D.oppName) || "Rival"); }
+function dHook(conn){
+  const hi = ()=>{ try{ conn.send({t:"hello", name:String(P.name||"").slice(0,30)}); }catch(e){} };
+  if(conn.open) hi(); else conn.on("open", hi);
+  conn.on("data", d=>dOnData(d));
+  conn.on("close", ()=>{
+    if(!D || D.step === "end" || D.step === "error") return;
+    dClear(); D.step = "error"; D.msg = "Tu rival se desconectó."; dRender();
+  });
+}
+
+/* ----- mensajes ----- */
+function dOnData(d){
+  if(!D || !d || typeof d !== "object") return;
+  if(d.t === "hello"){ D.oppName = String(d.name||"").replace(/[<>]/g,"").slice(0,30); if(D.step==="settings"||D.step==="wait-settings") dRender(); return; }
+  if(d.t === "start" && D.role === "guest"){
+    const c = d.cfg || {};
+    if(!D_PHASES[c.phase] || !Array.isArray(c.seq)) return;
+    D.cfg = {phase:String(c.phase), n:c.seq.length, secs:+c.secs || 30, seq:c.seq.map(Number)};
+    dStart();
+  } else if(d.t === "round" && D.role === "guest"){
+    dBeginRound(+d.i);
+  } else if(d.t === "ans"){
+    const i = +d.i;
+    if(!(i >= 0 && i < D.cfg.n) || D.opp[i]) return;
+    D.opp[i] = {ok:!!d.ok, ms:Math.max(0,+d.ms||0), txt:String(d.txt||"").slice(0,60)};
+    dCheckReveal(i);
+  } else if(d.t === "lobby"){
+    dClear(); D.step = D.role === "host" ? "settings" : "wait-settings"; D.my = []; D.opp = []; D.rewarded = false; dRender();
+  }
+}
+
+/* ----- partida ----- */
+function dHostStart(){
+  const phase = $("dPhase").value, n = +$("dN").value, secs = +$("dSecs").value;
+  const total = DATA[phase].words.length;
+  const seq = shuffle(Array.from({length:total},(_,i)=>i)).slice(0,n);
+  D.cfg = {phase, n:seq.length, secs, seq};
+  dSend({t:"start", cfg:D.cfg});
+  dStart();
+}
+function dStart(){
+  dClear();
+  D.my = []; D.opp = []; D.i = -1; D.rewarded = false; D.step = "count";
+  let left = 3;
+  D.count = left; dRender();
+  D.timer = setInterval(()=>{
+    left--;
+    if(left <= 0){ clearInterval(D.timer); D.timer = null; dBeginRound(0); }
+    else { D.count = left; dRender(); }
+  }, 1000);
+}
+function dBeginRound(i){
+  if(!D) return;
+  dClear();
+  D.i = i; D.step = "play"; D.t0 = Date.now(); D.answered = false;
+  dRender();
+  const inp = $("dInput"); if(inp) inp.focus();
+  if(D.cfg.secs > 0){
+    D.timer = setInterval(()=>{
+      const left = Math.max(0, Math.ceil(D.cfg.secs - (Date.now()-D.t0)/1000));
+      const el = $("dTime"), bar = $("dBar");
+      if(el){ el.textContent = left > 0 ? left : "¡TIEMPO!"; el.classList.toggle("up", left <= 0); }
+      if(bar) bar.style.width = (left / D.cfg.secs * 100) + "%";
+      if(left <= 0){ clearInterval(D.timer); D.timer = null; dSubmit(true); }
+    }, 250);
+  }
+}
+function dSubmit(auto){
+  if(!D || D.step !== "play" || D.answered) return;
+  const inp = $("dInput");
+  const typed = inp ? inp.value : "";
+  if(!auto && !typed.trim()) return;
+  D.answered = true;
+  const i = D.i;
+  const ms = auto ? D.cfg.secs*1000 : Date.now() - D.t0;
+  const ok = dGrade(D.cfg.phase, D.cfg.seq[i], typed);
+  D.my[i] = {ok, ms, txt:typed.trim().slice(0,60)};
+  if(D.timer){ clearInterval(D.timer); D.timer = null; }
+  dSend({t:"ans", i, ok, ms, txt:D.my[i].txt});
+  if(inp) inp.disabled = true;
+  const b = $("dSend"); if(b) b.disabled = true;
+  const st = $("dStatus"); if(st) st.textContent = "Respuesta enviada. Esperando a tu rival…";
+  dCheckReveal(i);
+}
+function dCheckReveal(i){
+  if(!D || D.i !== i || D.step !== "play") return;
+  if(!D.my[i] || !D.opp[i]) return;
+  D.step = "reveal"; dRender();
+  const last = (i + 1 >= D.cfg.n);
+  D.tmo = setTimeout(()=>{
+    D.tmo = null;
+    if(!D) return;
+    if(last){ dEnd(); }
+    else if(D.role === "host"){ dSend({t:"round", i:i+1}); dBeginRound(i+1); }
+  }, 4500);
+}
+function dEnd(){
+  dClear(); D.step = "end";
+  const [a,b] = dTotals();
+  if(!D.rewarded){
+    D.rewarded = true;
+    touchDay();
+    P.duels = (P.duels||0) + 1;
+    if(a > b) P.duelWins = (P.duelWins||0) + 1;
+    addXP(a > b ? 40 : a === b ? 25 : 15);
+    saveProgress(); checkPrizes();
+  }
+  dRender();
+  if(a > b) confetti();
+}
+
+/* ----- vistas ----- */
+function dRender(){
+  if(!D) return;
+  const R = $("dRoot");
+  const sel = (id,arr,cur,fmt)=>'<select id="'+id+'">'+arr.map(v=>'<option value="'+v+'"'+(String(v)===String(cur)?" selected":"")+'>'+fmt(v)+'</option>').join("")+'</select>';
+  let h = "";
+  switch(D.step){
+    case "menu":
+      h = '<h1>⚔️ Duelo 1 vs 1</h1><div class="sub">Rétate con un compañero: cada uno desde su celular</div>'+
+        '<div class="homecard"><h2>Crear un duelo</h2><button class="startbtn" data-d="create">Crear duelo y obtener código</button></div>'+
+        '<div class="homecard" style="margin-top:12px"><h2>Unirme a un duelo</h2>'+
+        '<input type="text" id="dCode" class="dinput" maxlength="4" placeholder="CÓDIGO" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false">'+
+        '<button class="startbtn" data-d="join" style="margin-top:10px">Unirme</button>'+
+        (D.msg ? '<div class="dstatus" style="color:var(--bad)">'+esc(D.msg)+'</div>' : '')+'</div>'+
+        '<div class="dnote">Los dos necesitan internet y abrir esta misma página. Ven el mismo IPA al mismo tiempo; gana quien consiga más puntos (10 por acierto, +5 si respondes más rápido).</div>';
+      break;
+    case "connecting":
+      h = '<h1>⚔️ Duelo 1 vs 1</h1><div class="dstatus">'+esc(D.msg)+'</div>'; break;
+    case "lobby-host":
+      h = '<h1>⚔️ Tu duelo está listo</h1><div class="sub">Dile este código a tu rival</div><div class="dcode">'+esc(D.code)+'</div>'+
+          '<div class="dstatus">Esperando a que tu rival se una…</div>'; break;
+    case "settings":
+      h = '<h1>⚔️ '+oppN()+' conectado</h1><div class="sub">Elige las reglas del duelo</div><div class="homecard dsel">'+
+        '<label class="setrow">Fase '+sel("dPhase",["1","2","3"],D.cfg.phase,v=>D_PHASES[v])+'</label>'+
+        '<label class="setrow">Palabras '+sel("dN",[3,5,7,10],D.cfg.n,v=>v)+'</label>'+
+        '<label class="setrow">Tiempo por palabra '+sel("dSecs",[20,30,45,60],D.cfg.secs,v=>v+" s")+'</label>'+
+        '<button class="startbtn" data-d="start">¡Empezar duelo!</button></div>'; break;
+    case "wait-settings":
+      h = '<h1>⚔️ Conectado</h1><div class="dstatus">Esperando a que tu rival elija las reglas…</div>'; break;
+    case "count":
+      h = '<div class="ccard" style="margin-top:20px"><div class="cready">Prepárate…</div><div class="dcount">'+D.count+'</div></div>'; break;
+    case "play": case "reveal": {
+      const i = D.i, ph = D.cfg.phase, w = DATA[ph].words[D.cfg.seq[i]];
+      const [a,b] = dTotals();
+      h = '<div class="cmeta"><span>'+D_PHASES[ph]+'</span><span>Palabra '+(i+1)+' de '+D.cfg.n+'</span></div>'+
+        '<div class="cscore"><div class="cplayer"><div class="cn">Tú</div><div class="cs">'+a+'</div></div><div class="cvs">VS</div>'+
+        '<div class="cplayer"><div class="cn">'+oppN()+'</div><div class="cs">'+b+'</div></div></div>';
+      if(D.step === "play"){
+        const left = D.cfg.secs;
+        h += '<div class="ccard"><div class="cipa'+(w[1].length>26?" long":"")+'">'+esc(fixIpaWrap(w[1]))+'</div>'+
+          '<div class="ctimewrap"><div class="ctime" id="dTime">'+left+'</div><div class="cbarbg"><div class="cbar" id="dBar" style="width:100%"></div></div></div></div>'+
+          '<div style="margin-top:14px"><input type="text" id="dInput" class="dinput" placeholder="Escribe la palabra…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">'+
+          '<button class="startbtn" id="dSend" data-d="send" style="margin-top:10px">Enviar respuesta</button><div class="dstatus" id="dStatus"></div></div>';
+      } else {
+        const me = D.my[i], op = D.opp[i];
+        const line = (nm,r,pts)=>'<div class="dline"><span>'+nm+': <b>'+(r.txt ? esc(r.txt) : "(sin respuesta)")+'</b> '+(r.ok?"✅":"❌")+'</span><span class="dpts">+'+pts+'</span></div>';
+        const alts = ALT[w[0].toLowerCase()];
+        h += '<div class="ccard"><div class="cipa'+(w[1].length>26?" long":"")+'">'+esc(fixIpaWrap(w[1]))+'</div><div class="cans">'+esc(w[0])+'</div>'+
+          (alts ? '<div class="calt">También válido: '+esc(alts.join(", "))+'</div>' : '')+'</div>'+
+          '<div style="margin-top:12px">'+line("Tú",me,dPts(me,op))+line(oppN(),op,dPts(op,me))+'</div>'+
+          '<div class="dstatus">'+(i+1>=D.cfg.n ? "Calculando resultado…" : "Siguiente palabra en unos segundos…")+'</div>';
+      }
+      break; }
+    case "end": {
+      const [a,b] = dTotals();
+      const res = a > b ? ["🏆","¡Ganaste el duelo!"] : a < b ? ["💪","Tu rival ganó, ¡revancha!"] : ["🤝","¡Empate!"];
+      const xp = a > b ? 40 : a === b ? 25 : 15;
+      h = '<div class="cresult"><div class="bigemoji">'+res[0]+'</div><h2>'+res[1]+'</h2>'+
+        '<div class="cscore" style="margin:14px 0"><div class="cplayer"><div class="cn">Tú</div><div class="cs">'+a+'</div></div><div class="cvs">VS</div>'+
+        '<div class="cplayer"><div class="cn">'+oppN()+'</div><div class="cs">'+b+'</div></div></div>'+
+        '<div class="greet" style="margin-bottom:16px">+'+xp+' XP ganados</div>'+
+        (D.role === "host" ? '<button class="startbtn" data-d="again">⚔️ Jugar de nuevo</button>' : '<div class="dstatus">El anfitrión puede iniciar otra ronda.</div>')+
+        '<button class="ghostbtn" data-d="menu" style="margin-top:10px">Salir del duelo</button></div>'; break; }
+    case "error":
+      h = '<h1>⚔️ Duelo</h1><div class="dstatus" style="color:var(--bad)">'+esc(D.msg)+'</div>'+
+        '<button class="startbtn" data-d="menu" style="margin-top:14px">Volver al menú del duelo</button>'; break;
+  }
+  R.innerHTML = h;
+  if(D.step === "menu") window.scrollTo(0,0);
+}
+
+$("dRoot").addEventListener("click", e=>{
+  const t = e.target.closest("[data-d]"); if(!t || !D) return;
+  switch(t.dataset.d){
+    case "create": dCreate(); break;
+    case "join": dJoin($("dCode").value); break;
+    case "start": dHostStart(); break;
+    case "send": dSubmit(false); break;
+    case "again": dClear(); dSend({t:"lobby"}); D.step = "settings"; D.my = []; D.opp = []; D.rewarded = false; dRender(); break;
+    case "menu": { dClose(); D = dFresh(); dRender(); break; }
+  }
+});
+$("dRoot").addEventListener("keydown", e=>{
+  if(e.key !== "Enter" || !D) return;
+  if(e.target.id === "dInput") dSubmit(false);
+  else if(e.target.id === "dCode") dJoin(e.target.value);
+});
+$("homeDuelBtn").addEventListener("click", ()=>{
+  if(!ensureRegistered()) return;
+  saveProgress(); syncNow(true);
+  if(!D) D = dFresh();
+  $("homeScreen").style.display = "none";
+  $("duelScreen").style.display = "block";
+  dRender();
+});
+$("dBack").addEventListener("click", ()=>{
+  dClose();
+  $("duelScreen").style.display = "none";
+  $("homeScreen").style.display = "flex";
+  updateHome();
+});
+
+
+let lastAct = Date.now(), hb = 0;
+["click","keydown","input","touchstart"].forEach(ev=>document.addEventListener(ev, ()=>{ lastAct = Date.now(); }, {passive:true}));
+setInterval(()=>{
+  if(document.hidden || Date.now() - lastAct > 60000) return;
+  if($("studyScreen").style.display !== "block" && $("duelScreen").style.display !== "block" && $("simScreen").style.display !== "block") return;
+  P.minutes = (P.minutes||0) + 0.25;
+  if(++hb % 4 === 0) saveProgress();
+}, 15000);
+document.querySelectorAll(".sendNow").forEach(b=>b.addEventListener("click", sendNowManual));
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState === "hidden") syncNow(); });
+window.addEventListener("pagehide", ()=>syncNow());
+
+loadProgress();
+updateHome();
+newOrder();
+</script>
+</body>
+</html>
