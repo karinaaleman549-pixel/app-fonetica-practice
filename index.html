@@ -8,7 +8,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Concurso de Fonética: practica y gana premios">
 <meta property="og:description" content="Lee símbolos IPA y escribe la palabra en inglés. Gana XP, mantén tu racha y desbloquea trofeos.">
+<meta property="og:image" content="https://categoriafonetica.netlify.app/vista-previa.png">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1000">
+<meta property="og:url" content="https://categoriafonetica.netlify.app/">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://categoriafonetica.netlify.app/vista-previa.png">
 <meta name="twitter:title" content="Concurso de Fonética: practica y gana premios">
 <meta name="twitter:description" content="Practica la transcripción de IPA americano (Oxford Dictionary) a escritura.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,6 +44,14 @@ h1{font-size:1.3rem; font-weight:700; margin:4px 0 2px; text-align:center;}
 /* ---------- Home ---------- */
 #homeScreen{display:flex; flex-direction:column; gap:14px;}
 .hero{text-align:center; padding:6px 0 0;}
+.heroring{position:relative; width:190px; height:190px; margin:0 auto;}
+.herodisc{position:absolute; left:50%; top:50%; width:112px; height:112px; margin:-56px 0 0 -56px; border-radius:50%; background:#f4f7fd; border:3px solid var(--accent);}
+.herotro{position:absolute; left:0; right:0; top:50%; margin-top:-20px; text-align:center; font-size:2.4rem; line-height:1; animation:bob 2.4s ease-in-out infinite;}
+.herospin{position:absolute; left:0; top:0; width:100%; height:100%; animation:heroSpin 45s linear infinite;}
+.hav{position:absolute; left:50%; top:50%; width:48px; height:48px; margin:-24px 0 0 -24px;}
+.havi{display:block; width:100%; height:100%; animation:heroSpin 45s linear infinite reverse;}
+.hav svg{display:block; width:100%; height:100%; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.18);}
+@keyframes heroSpin{to{transform:rotate(360deg);}}
 .herotrophy{font-size:3.2rem; line-height:1; animation:bob 2.4s ease-in-out infinite;}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-6px) rotate(4deg);}}
 .hero h1{font-size:1.45rem; margin:8px 0 4px;}
@@ -171,7 +184,7 @@ input[type=text]{width:100%; padding:12px; font-size:1rem; border-radius:10px; b
 .confetti{position:fixed; top:-12px; width:9px; height:14px; z-index:70; pointer-events:none; animation:fall linear forwards;}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg); opacity:.9;}}
 @media (prefers-reduced-motion: reduce){
-  .herotrophy,.modal .bigemoji{animation:none;}
+  .herotrophy,.modal .bigemoji,.herotro,.herospin,.havi{animation:none;}
   .confetti{display:none;}
 }
 
@@ -263,6 +276,8 @@ input[type=text]{width:100%; padding:12px; font-size:1rem; border-radius:10px; b
 button.big.ok{background:var(--good); color:#fff;}
 button.big.no{background:var(--bad); color:#fff;}
 #simScreen{display:none;}
+#revScreen{display:none;}
+.ghostbtn.review{border:2px solid var(--accent); color:var(--accent); font-weight:700;}
 .shead{font-size:1.4rem; text-align:center; margin:6px 0 4px;}
 .cipa.sent{text-align:left; align-self:stretch; font-size:clamp(1.15rem,5vw,1.6rem); word-spacing:.22em; line-height:1.55;}
 .slist{margin:0; padding-left:20px; font-size:.88rem; line-height:1.6;}
@@ -280,7 +295,7 @@ button.big.no{background:var(--bad); color:#fff;}
   <div id="homeScreen">
     <div class="brandbar"></div>
     <div class="hero">
-      <div class="herotrophy">🏆</div>
+      <div class="heroring" aria-hidden="true"><div class="herodisc"></div><div class="herospin"><span class="hav" style="transform:translate(24.5px,-59.1px)"><span class="havi"><svg viewBox="0 0 200 200" aria-hidden="true"><clipPath id="hc0"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="100" cy="100" r="100" fill="#123E8C"/><g clip-path="url(#hc0)"><ellipse cx="100" cy="205" rx="72" ry="62" fill="#fff"/><rect x="87" y="118" width="26" height="30" rx="8" fill="#E8B890"/><circle cx="100" cy="92" r="40" fill="#E8B890"/><path d="M58 88 Q58 46 100 46 Q142 46 142 88 Q120 66 100 70 Q78 66 58 88Z" fill="#2B1B12"/><circle cx="86" cy="96" r="4.5" fill="#1b1b1b"/><circle cx="114" cy="96" r="4.5" fill="#1b1b1b"/><path d="M88 112 Q100 123 112 112" stroke="#7a2e2e" stroke-width="4.5" fill="none" stroke-linecap="round"/></g></svg></span></span><span class="hav" style="transform:translate(59.1px,-24.5px)"><span class="havi"><svg viewBox="0 0 200 200" aria-hidden="true"><clipPath id="hc1"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="100" cy="100" r="100" fill="#F5B400"/><g clip-path="url(#hc1)"><path d="M45 95 Q45 30 100 30 Q155 30 155 95 L160 175 L40 175 Z" fill="#1B1B1B"/><ellipse cx="100" cy="205" rx="72" ry="62" fill="#fff"/><rect x="87" y="118" width="26" height="30" rx="8" fill="#C68B5E"/><circle cx="100" cy="92" r="40" fill="#C68B5E"/><path d="M58 92 Q60 48 100 48 Q140 48 142 92 Q125 70 100 70 Q75 70 58 92Z" fill="#1B1B1B"/><circle cx="86" cy="96" r="4.5" fill="#1b1b1b"/><circle cx="114" cy="96" r="4.5" fill="#1b1b1b"/><path d="M88 112 Q100 123 112 112" stroke="#7a2e2e" stroke-width="4.5" fill="none" stroke-linecap="round"/></g></svg></span></span><span class="hav" style="transform:translate(59.1px,24.5px)"><span class="havi"><svg viewBox="0 0 200 200" aria-hidden="true"><clipPath id="hc2"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="100" cy="100" r="100" fill="#C8102E"/><g clip-path="url(#hc2)"><ellipse cx="100" cy="205" rx="72" ry="62" fill="#fff"/><rect x="87" y="118" width="26" height="30" rx="8" fill="#F0C8A0"/><circle cx="100" cy="92" r="40" fill="#F0C8A0"/><path d="M58 88 Q58 46 100 46 Q142 46 142 88 Q120 66 100 70 Q78 66 58 88Z" fill="#5A3825"/><circle cx="86" cy="96" r="4.5" fill="#1b1b1b"/><circle cx="114" cy="96" r="4.5" fill="#1b1b1b"/><path d="M88 112 Q100 123 112 112" stroke="#7a2e2e" stroke-width="4.5" fill="none" stroke-linecap="round"/></g></svg></span></span><span class="hav" style="transform:translate(24.5px,59.1px)"><span class="havi"><svg viewBox="0 0 200 200" aria-hidden="true"><clipPath id="hc3"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="100" cy="100" r="100" fill="#2E9E6B"/><g clip-path="url(#hc3)"><path d="M45 95 Q45 30 100 30 Q155 30 155 95 L160 175 L40 175 Z" fill="#1B1B1B"/><ellipse cx="100" cy="205" rx="72" ry="62" fill="#fff"/><rect x="87" y="118" width="26" height="30" rx="8" fill="#A8693F"/><circle cx="100" cy="92" r="40" fill="#A8693F"/><path d="M58 92 Q60 48 100 48 Q140 48 142 92 Q125 70 100 70 Q75 70 58 92Z" fill="#1B1B1B"/><circle cx="86" cy="96" r="4.5" fill="#1b1b1b"/><circle cx="114" cy="96" r="4.5" fill="#1b1b1b"/><path d="M88 112 Q100 123 112 112" stroke="#7a2e2e" stroke-width="4.5" fill="none" stroke-linecap="round"/></g></svg></span></span><span class="hav" style="transform:translate(-24.5px,59.1px)"><span class="havi"><svg viewBox="0 0 200 200" aria-hidden="true"><clipPath id="hc4"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="100" cy="100" r="100" fill="#123E8C"/><g clip-path="url(#hc4)"><path d="M45 95 Q45 30 100 30 Q155 30 155 95 L160 175 L40 175 Z" fill="#7A4B2A"/><ellipse cx="100" cy="205" rx="72" ry="62" fill="#fff"/><rect x="87" y="118" width="26" height="30" rx="8" fill="#DDA67A"/><circle cx="100" cy="92" r="40" fill="#DDA67A"/><path d="M58 92 Q60 48 100 48 Q140 48 142 92 Q125 70 100 70 Q75 70 58 92Z" fill="#7A4B2A"/><circle cx="86" cy="96" r="4.5" fill="#1b1b1b"/><circle cx="114" cy="96" r="4.5" fill="#1b1b1b"/><path d="M88 112 Q100 123 112 112" stroke="#7a2e2e" stroke-width="4.5" fill="none" stroke-linecap="round"/></g></svg></span></span><span class="hav" style="transform:translate(-59.1px,24.5px)"><span class="havi"><svg viewBox="0 0 200 200" aria-hidden="true"><clipPath id="hc5"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="100" cy="100" r="100" fill="#F5B400"/><g clip-path="url(#hc5)"><ellipse cx="100" cy="205" rx="72" ry="62" fill="#fff"/><rect x="87" y="118" width="26" height="30" rx="8" fill="#8D5A38"/><circle cx="100" cy="92" r="40" fill="#8D5A38"/><path d="M58 88 Q58 46 100 46 Q142 46 142 88 Q120 66 100 70 Q78 66 58 88Z" fill="#2B1B12"/><circle cx="86" cy="96" r="4.5" fill="#1b1b1b"/><circle cx="114" cy="96" r="4.5" fill="#1b1b1b"/><path d="M88 112 Q100 123 112 112" stroke="#7a2e2e" stroke-width="4.5" fill="none" stroke-linecap="round"/></g></svg></span></span><span class="hav" style="transform:translate(-59.1px,-24.5px)"><span class="havi"><svg viewBox="0 0 200 200" aria-hidden="true"><clipPath id="hc6"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="100" cy="100" r="100" fill="#C8102E"/><g clip-path="url(#hc6)"><path d="M45 95 Q45 30 100 30 Q155 30 155 95 L160 175 L40 175 Z" fill="#3B2416"/><ellipse cx="100" cy="205" rx="72" ry="62" fill="#fff"/><rect x="87" y="118" width="26" height="30" rx="8" fill="#EBBF98"/><circle cx="100" cy="92" r="40" fill="#EBBF98"/><path d="M58 92 Q60 48 100 48 Q140 48 142 92 Q125 70 100 70 Q75 70 58 92Z" fill="#3B2416"/><circle cx="86" cy="96" r="4.5" fill="#1b1b1b"/><circle cx="114" cy="96" r="4.5" fill="#1b1b1b"/><path d="M88 112 Q100 123 112 112" stroke="#7a2e2e" stroke-width="4.5" fill="none" stroke-linecap="round"/></g></svg></span></span><span class="hav" style="transform:translate(-24.5px,-59.1px)"><span class="havi"><svg viewBox="0 0 200 200" aria-hidden="true"><clipPath id="hc7"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="100" cy="100" r="100" fill="#2E9E6B"/><g clip-path="url(#hc7)"><path d="M45 95 Q45 30 100 30 Q155 30 155 95 L160 175 L40 175 Z" fill="#1B1B1B"/><ellipse cx="100" cy="205" rx="72" ry="62" fill="#fff"/><rect x="87" y="118" width="26" height="30" rx="8" fill="#B97A4E"/><circle cx="100" cy="92" r="40" fill="#B97A4E"/><path d="M58 92 Q60 48 100 48 Q140 48 142 92 Q125 70 100 70 Q75 70 58 92Z" fill="#1B1B1B"/><circle cx="86" cy="96" r="4.5" fill="#1b1b1b"/><circle cx="114" cy="96" r="4.5" fill="#1b1b1b"/><path d="M88 112 Q100 123 112 112" stroke="#7a2e2e" stroke-width="4.5" fill="none" stroke-linecap="round"/></g></svg></span></span></div><div class="herotro">🏆</div></div>
       <h1>¡Bienvenido al Concurso de Fonética!</h1>
       <div class="greet" id="greet">Lee el IPA, escribe la palabra, gana premios y llega a la gran final.</div>
     </div>
@@ -290,7 +305,7 @@ button.big.no{background:var(--bad); color:#fff;}
       <div class="chip"><span class="big" id="hRank">🐣</span><span class="lbl" id="hRankName">Principiante</span></div>
       <div class="chip"><span class="big" id="hXp">0</span><span class="lbl">XP (puntos)</span></div>
       <div class="chip"><span class="big" id="hStreak">0</span><span class="lbl">Racha (días)</span></div>
-      <div class="chip"><span class="big" id="hPrizes">0/16</span><span class="lbl">Premios</span></div>
+      <div class="chip"><span class="big" id="hPrizes">0/19</span><span class="lbl">Premios</span></div>
     </div>
 
     <div class="countdown" id="countdown"></div>
@@ -305,6 +320,7 @@ button.big.no{background:var(--bad); color:#fff;}
     <div class="dnote" id="whoLine" style="display:none;margin:0"></div>
     <button class="startbtn" id="startBtn">Comenzar práctica ➜</button>
     <button class="startbtn gold" id="simBtn">🎯 Simulacro de competencia</button>
+    <button class="ghostbtn review" id="revBtn" style="display:none">🔁 Repasar mis errores (<span id="revN">0</span>)</button>
     <button class="ghostbtn" id="homeTipsBtn">💡 Pistas: de IPA a escritura</button>
     <button class="ghostbtn" id="homePrizesBtn">🏆 Ver mi vitrina de premios</button>
     <button class="ghostbtn" id="homeDuelBtn">⚔️ Duelo con un compañero (extra)</button>
@@ -336,13 +352,13 @@ button.big.no{background:var(--bad); color:#fff;}
         <li><span class="stepnum">1</span><span class="steptext"><b>Por niveles, sin saltarse fases.</b> Estudien en orden: primero la Fase 1, después la 2 y al final la 3. Si no ganan la Fase 1, nunca llegan a la 2; y si no ganan la 2, nunca llegan a la 3. <b>No estudien solo las palabras difíciles:</b> si no dominan la Fase 1, se quedan fuera en la primera ronda.</span></li>
         <li><span class="stepnum">2</span><span class="steptext"><b>Les pueden tocar ambas.</b> En la pantalla puede salir solo una palabra o una oración completa, al azar. Por eso hay dos pestañas, <b>Palabras</b> y <b>Oraciones</b>, y tienen que estudiar las dos.<br><span class="ex">Palabra: <b>flæɡ</b> → flag</span><br><span class="ex">Oración: <b>reɪz aʊər flæɡ haɪ</b> → Raise our flag high.</span></span></li>
         <li><span class="stepnum alt">3</span><span class="steptext"><b>Estudien los símbolos, no memoricen.</b> La guía es para aprender los símbolos; en la competencia puede aparecer una palabra u oración nueva que no está en ella. Los símbolos se repiten en todas las palabras: si aprenden que <b>æ</b> suena como "a", ya pueden leer <b>flæɡ</b> = flag, <b>ˈækses</b> = access y <b>stæf</b> = staff.</span></li>
-        <li><span class="stepnum alt">4</span><span class="steptext"><b>Cómo usar esta app:</b> empiecen en modo <b>Tarjetas</b> (miran el IPA, piensan cómo se escribe y tocan <b>Revelar</b>). Después pasen a <b>Pizarra</b>: escriben la respuesta a mano, como en la competencia, y marcan si acertaron. Luego usen el <b>Quiz</b>, donde escriben la respuesta en el celular y la app la califica. Cuando se sientan listos, hagan un <b>🎯 Simulacro</b>: 10 ítems con tiempo, sin pistas y sin saber si acertaron hasta el final. Usen <b>💡 Pistas</b> para ver con qué letras se escribe cada sonido.</span></li>
+        <li><span class="stepnum alt">4</span><span class="steptext"><b>Cómo usar esta app:</b> empiecen en modo <b>Tarjetas</b> (miran el IPA, piensan cómo se escribe y tocan <b>Revelar</b>). Después pasen a <b>Pizarra</b>: escriben la respuesta a mano, como en la competencia, y marcan si acertaron. Luego usen el <b>Quiz</b>, donde escriben la respuesta en el celular y la app la califica. Lo que fallen vuelve a salir más seguido, y el botón <b>🔁 Repasar mis errores</b> del inicio les muestra solo esos ítems. Cuando se sientan listos, hagan un <b>🎯 Simulacro</b>: 10 ítems con tiempo, sin pistas y sin saber si acertaron hasta el final. Usen <b>💡 Pistas</b> para ver con qué letras se escribe cada sonido.</span></li>
       </ul>
       <div class="note">
         <b>Importante:</b> las palabras de la lista aparecen <b>siempre con la primera letra en mayúscula</b> (por ejemplo: Flag, Nutrition, Rhythm). Es solo el formato de la lista; en el Quiz y en el Simulacro puedes escribirlas con mayúscula o con minúscula y se calificarán igual.
       </div></div></details>
 
-    <details class="acc"><summary>⭐ ¿Qué es el XP?</summary><div class="accbody">      <p style="margin:0;font-size:.88rem;line-height:1.5">El <b>XP</b> (puntos de experiencia) son los puntos que ganas al practicar: <b>10 XP</b> por cada ítem nuevo que aciertas, <b>4 XP</b> si ya lo habías acertado antes, más bonus por acertar seguidas. Mientras más XP tengas, <b>subes de rango</b> y desbloqueas <b>premios</b>. En la Pizarra ganas <b>5 XP</b> si marcas ✓ y <b>1 XP</b> si marcas ✗. En el Simulacro ganas <b>10 XP</b> por acierto y <b>20 XP</b> por terminarlo. El XP no cuenta para la competencia real; es solo para motivarte a practicar.</p></div></details>
+    <details class="acc"><summary>⭐ ¿Qué es el XP?</summary><div class="accbody">      <p style="margin:0;font-size:.88rem;line-height:1.5">El <b>XP</b> (puntos de experiencia) son los puntos que ganas al practicar: <b>10 XP</b> por cada ítem nuevo que aciertas, <b>4 XP</b> si ya lo habías acertado antes, más bonus por acertar seguidas. Mientras más XP tengas, <b>subes de rango</b> y desbloqueas <b>premios</b>. En la Pizarra ganas <b>5 XP</b> si marcas ✓ y <b>1 XP</b> si marcas ✗. En el Simulacro ganas <b>10 XP</b> por acierto y <b>20 XP</b> por terminarlo. En <b>Repasar mis errores</b> ganas <b>6 XP</b> por cada ítem que corriges y <b>10 XP</b> por terminar. El XP no cuenta para la competencia real; es solo para motivarte a practicar.</p></div></details>
 
     <details class="acc"><summary>💾 Guardar y enviar tu progreso</summary><div class="accbody">      <p style="margin:0;font-size:.88rem;line-height:1.5">Tu progreso <b>se guarda solo</b> en este celular cada vez que practicas (usa siempre el mismo celular y la misma página). También se <b>envía solo</b> a la coordinadora de fonética mientras practicas. Si quieres asegurarte, toca <b>📤 Enviar mi progreso</b> al terminar; lo encuentras en el inicio y dentro de la práctica.</p></div></details>
 
@@ -455,6 +471,15 @@ button.big.no{background:var(--bad); color:#fff;}
     <div id="sRoot"></div>
   </div>
 
+  <!-- ============ REPASO DE ERRORES ============ -->
+  <div id="revScreen">
+    <div class="topbar">
+      <button class="backbtn" id="rBack">🏠 Inicio</button>
+    </div>
+    <div class="brandbar"></div>
+    <div id="rRoot"></div>
+  </div>
+
   <!-- ============ DUELO 1 VS 1 ============ -->
   <div id="duelScreen">
     <div class="topbar">
@@ -563,6 +588,7 @@ const GOOD = ["¡Excelente!","¡Perfecto!","¡Así se hace!","¡Muy bien!","¡Br
 const PRIZES = [
   {id:"duel1",  e:"⚔️", n:"Duelista",            d:"Juega tu primer duelo contra un compañero.",         t:s=>(s.duels||0)>=1},
   {id:"duel3",  e:"🏅", n:"Rey del duelo",        d:"Gana 3 duelos.",                                     t:s=>(s.duelWins||0)>=3},
+  {id:"fix5",   e:"🛠️", n:"Corrector",           d:"Corrige 5 ítems que habías fallado.",                t:s=>(s.fixed||0)>=5},
   {id:"sim1",   e:"🎯", n:"Valiente",            d:"Termina tu primer simulacro de competencia.",        t:s=>(s.sim&&s.sim.n||0)>=1},
   {id:"sim9",   e:"🚀", n:"Listo para competir",  d:"Saca 90 % o más en un simulacro.",                  t:s=>(s.sim&&s.sim.best||0)>=90},
   {id:"first",  e:"🐣", n:"Primer acierto",      d:"Acierta tu primera respuesta en el Quiz.",           t:s=>s.score>=1},
@@ -590,7 +616,7 @@ let nextTimer = null, modalOpen = false, pendingNext = false, modalQueue = [];
 function defaultProgress(){
   return {w:{day:"",n:0,mo:"",mn:0,t:0}, sid:"", name:"", group:"", minutes:0, days:0, xp:0, score:0, attempts:0, bestCombo:0, streak:0, bestStreak:0, lastDay:"",
           daily:{date:"", count:0, done:false}, goalsDone:0, mastered:{}, prizes:{},
-          pz:{n:0, ok:0}, sim:{n:0, best:0, last:0, sum:0}};
+          pz:{n:0, ok:0}, sim:{n:0, best:0, last:0, sum:0}, st:{}, wk:{}, fixed:0};
 }
 function loadProgress(){
   try{
@@ -601,6 +627,10 @@ function loadProgress(){
     const valid = {};
     for(const ph in DATA){ for(const set of ["words","sentences"]){ DATA[ph][set].forEach(r=>{ valid[ph+"|"+set+"|"+r[0]] = 1; }); } }
     for(const k in P.mastered){ if(!valid[k]) delete P.mastered[k]; }
+    if(!P.st || typeof P.st !== "object") P.st = {};
+    if(!P.wk || typeof P.wk !== "object") P.wk = {};
+    for(const k in P.st){ if(!valid[k]) delete P.st[k]; }
+    for(const k in P.wk){ if(!valid[k]) delete P.wk[k]; }
   }catch(e){}
   if(!P.sid){ P.sid = "s"+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); }
 }
@@ -621,7 +651,18 @@ function trackPayload(){
           prizes:Object.keys(P.prizes).length, last:new Date().toISOString(),
           p1w:pc("1","words"), p1s:pc("1","sentences"), p2w:pc("2","words"), p2s:pc("2","sentences"), p3w:pc("3","words"), p3s:pc("3","sentences"), dom:domAll(),
           simN:P.sim.n, simLast:P.sim.last, simBest:P.sim.best, simAvg:P.sim.n ? Math.round(P.sim.sum/P.sim.n) : 0,
-          pzN:P.pz.n, pzOk:P.pz.n ? Math.round(P.pz.ok/P.pz.n*100) : 0};
+          pzN:P.pz.n, pzOk:P.pz.n ? Math.round(P.pz.ok/P.pz.n*100) : 0,
+          wkN:Object.keys(P.wk).length, fixed:P.fixed||0, fl:failList(), flv:1};
+}
+function failList(){
+  const out = [];
+  for(const k in P.st){
+    const v = P.st[k]; if(!v || v[1] < 1) continue;
+    const p = k.split("|");
+    out.push([p[0], p[1] === "words" ? "Palabra" : "Oración", p.slice(2).join("|").slice(0,70), v[1], v[0]]);
+  }
+  out.sort((a,b)=>b[3]-a[3] || b[4]-a[4]);
+  return out.slice(0,40);
 }
 /* ---- Envío por correo con Web3Forms (máx. 2 por día y 30 por mes en cada celular) ---- */
 function w3fCan(kind){
@@ -722,6 +763,31 @@ function dailyCount(){ return P.daily.date === today() ? P.daily.count : 0; }
 
 /* ---------- Dominio (ítems acertados en el Quiz) ---------- */
 function mkey(phase,set,text){ return phase+"|"+set+"|"+text; }
+/* Registro de aciertos y fallos por ítem. dec = cuánto baja el nivel de repaso si acierta. */
+function recordResult(phase,set,answer,ok,dec){
+  const key = mkey(phase,set,answer);
+  const v = P.st[key] || [0,0];
+  v[0]++; if(!ok) v[1]++;
+  P.st[key] = v;
+  if(!ok){ P.wk[key] = 2; return false; }
+  if(P.wk[key] && dec > 0){
+    P.wk[key] -= dec;
+    if(P.wk[key] <= 0){ delete P.wk[key]; P.fixed = (P.fixed||0) + 1; return true; }
+  }
+  return false;
+}
+function weakCount(){ return Object.keys(P.wk).length; }
+function weakItems(){
+  const out = [];
+  for(const k in P.wk){
+    const p = k.split("|"), ph = p[0], set = p[1], ans = p.slice(2).join("|");
+    const list = DATA[ph] && DATA[ph][set]; if(!list) continue;
+    const idx = list.findIndex(r=>r[0] === ans); if(idx < 0) continue;
+    out.push({phase:ph, set:set, idx:idx, lv:P.wk[k], f:(P.st[k]||[0,0])[1]});
+  }
+  out.sort((a,b)=>b.lv-a.lv || b.f-a.f);
+  return out;
+}
 function masteredCount(phase,set){
   const prefix = phase+"|"+set+"|";
   let n = 0;
@@ -893,6 +959,8 @@ function updateHome(){
   $("hXp").textContent = P.xp;
   $("hStreak").textContent = displayStreak();
   $("hPrizes").textContent = Object.keys(P.prizes).length+"/"+PRIZES.length;
+  const wn = weakCount();
+  $("revN").textContent = wn; $("revBtn").style.display = wn > 0 ? "block" : "none";
   $("greet").textContent = "Lee el IPA, escribe la palabra, gana premios y llega a la gran final.";
   $("startBtn").textContent = P.xp > 0 ? "Continuar práctica ➜" : "Comenzar práctica ➜";
   const need = TRACK_ON && !P.name;
@@ -926,9 +994,14 @@ function shuffle(arr){
 function currentList(){ return DATA[state.phase][state.set]; }
 function fixIpaWrap(str){ return str.replace(/([ˈˌ])/g, "⁠$1"); }
 function cancelTimer(){ if(nextTimer){ clearTimeout(nextTimer); } nextTimer = null; }
+function orderFor(phase,set){
+  const list = DATA[phase][set], w = [], o = [];
+  list.forEach((r,i)=>{ (P.wk[mkey(phase,set,r[0])] ? w : o).push(i); });
+  return shuffle(w).concat(shuffle(o));
+}
 function newOrder(){
-  state.order = shuffle(currentList().map((_,i)=>i));
-  state.pos = 0;
+  state.order = orderFor(state.phase, state.set);
+  state.pos = 0; state.requeueIdx = null;
 }
 
 function updatePhaseHint(){
@@ -957,7 +1030,7 @@ function render(){
   ipaEl.classList.toggle("long", ipa.length > 40);
   ipaEl.classList.toggle("sent", state.set === "sentences");
   $("answer").classList.toggle("sent", state.set === "sentences");
-  $("eje").textContent = eje;
+  $("eje").textContent = P.wk[mkey(state.phase,state.set,answer)] ? "🔁 Repaso · "+eje : eje;
   $("posLabel").textContent = state.pos+1;
   $("totalLabel").textContent = list.length;
   $("scoreLabel").textContent = P.score;
@@ -1005,13 +1078,21 @@ function normalize(s){
 function next(){
   cancelTimer();
   state.revealed = false;
-  state.pos = (state.pos+1) % state.order.length;
-  if(state.pos === 0) state.order = shuffle(state.order);
+  const rq = state.requeueIdx; state.requeueIdx = null;
+  if(rq != null && state.order.length > 6 && state.order[state.pos] === rq){
+    // El ítem fallado vuelve a salir unas posiciones más adelante
+    state.order.splice(state.pos, 1);
+    state.order.splice(Math.min(state.pos+4, state.order.length), 0, rq);
+    if(state.pos >= state.order.length) state.pos = 0;
+  } else {
+    state.pos = (state.pos+1) % state.order.length;
+    if(state.pos === 0) state.order = orderFor(state.phase, state.set);
+  }
   render();
 }
 
 function prev(){
-  cancelTimer();
+  cancelTimer(); state.requeueIdx = null;
   state.revealed = false;
   state.pos = (state.pos - 1 + state.order.length) % state.order.length;
   render();
@@ -1027,7 +1108,7 @@ function onNextClick(){
   next();
 }
 function onSkip(){
-  state.combo = 0;
+  state.combo = 0; state.requeueIdx = null;
   next();
 }
 
@@ -1073,7 +1154,9 @@ function markBoard(ok){
   if(!state.revealed) return;
   touchDay();
   P.pz.n++;
-  if(ok){ P.pz.ok++; addXP(5); bumpDaily(); } else { addXP(1); }
+  const pi = state.order[state.pos];
+  recordResult(state.phase, state.set, currentList()[pi][0], ok, 0);
+  if(ok){ P.pz.ok++; addXP(5); bumpDaily(); } else { addXP(1); state.requeueIdx = pi; }
   saveProgress(); checkPrizes(); updateHud();
   next();
 }
@@ -1106,13 +1189,15 @@ function checkAnswer(){
     state.combo++;
     if(state.combo > P.bestCombo) P.bestCombo = state.combo;
     const key = mkey(state.phase,state.set,answer);
+    const wasWeak = !!P.wk[key];
+    const fixedNow = recordResult(state.phase,state.set,answer,true,1);
     const isNew = !P.mastered[key];
     P.mastered[key] = 1;
     const gain = (isNew ? 10 : 4) + Math.min(state.combo-1, 5)*2;
     const isAlt = normalize(hit) !== normalize(answer);
     fb.textContent = isAlt
       ? "✅ ¡Válido! Suena igual que "+answer+" (se acepta "+hit+")"
-      : "✅ "+GOOD[Math.floor(Math.random()*GOOD.length)]+" "+answer+(isNew?"  · ¡Nuevo dominado!":"");
+      : "✅ "+GOOD[Math.floor(Math.random()*GOOD.length)]+" "+answer+(fixedNow ? "  · 🛠️ ¡Error corregido!" : wasWeak ? "  · 🔁 Una más y lo corriges" : isNew ? "  · ¡Nuevo dominado!" : "");
     fb.className = "feedback good";
     card.classList.remove("shake"); card.classList.add("pop");
     // meta diaria
@@ -1125,7 +1210,9 @@ function checkAnswer(){
     }
   } else {
     state.combo = 0;
-    fb.textContent = "❌ ¡Casi, tú puedes! Era: "+answer;
+    recordResult(state.phase,state.set,answer,false,0);
+    state.requeueIdx = idx;
+    fb.textContent = "❌ ¡Casi, tú puedes! Era: "+answer+" · Volverá a salir pronto.";
     fb.className = "feedback bad";
     card.classList.remove("pop"); card.classList.add("shake");
   }
@@ -1241,7 +1328,11 @@ function simFinish(){
   const ok = S.res.filter(r=>r.ok).length;
   const pct = Math.round(ok/S.res.length*100);
   touchDay();
-  S.res.forEach(r=>{ if(r.ok){ P.mastered[mkey(S.phase, r.set, DATA[S.phase][r.set][r.idx][0])] = 1; } });
+  S.res.forEach(r=>{
+    const ans = DATA[S.phase][r.set][r.idx][0];
+    if(r.ok){ P.mastered[mkey(S.phase, r.set, ans)] = 1; }
+    recordResult(S.phase, r.set, ans, r.ok, 1);
+  });
   P.sim.n++; P.sim.last = pct; P.sim.sum += pct; if(pct > P.sim.best) P.sim.best = pct;
   S.xp = ok*10 + 20; S.pct = pct; S.ok = ok;
   S.step = "result"; simRender();
@@ -1291,7 +1382,8 @@ function simRender(){
     } else {
       h += '<div class="dnote">¡Sin errores! 🎉</div>';
     }
-    h += '<button class="startbtn gold" data-s="again" style="margin-top:14px">🔁 Otro simulacro</button>'+
+    if(weakCount() > 0){ h += '<button class="startbtn" data-s="review" style="margin-top:14px">🔁 Repasar mis errores ('+weakCount()+')</button>'; }
+    h += '<button class="startbtn gold" data-s="again" style="margin-top:10px">🎯 Otro simulacro</button>'+
          '<button class="ghostbtn" data-s="home" style="margin-top:10px">🏠 Volver al inicio</button>';
   }
   root.innerHTML = h;
@@ -1305,6 +1397,7 @@ $("sRoot").addEventListener("click", e=>{
   else if(a === "next"){ simSubmit(false); }
   else if(a === "again"){ S = simFresh(); simRender(); }
   else if(a === "home"){ $("sBack").click(); }
+  else if(a === "review"){ $("sBack").click(); $("revBtn").click(); }
 });
 $("sRoot").addEventListener("keydown", e=>{ if(e.key === "Enter" && e.target.id === "sInput") simSubmit(false); });
 $("simBtn").addEventListener("click", ()=>{
@@ -1318,6 +1411,114 @@ $("simBtn").addEventListener("click", ()=>{
 $("sBack").addEventListener("click", ()=>{
   simStop(); S = null;
   $("simScreen").style.display = "none";
+  $("homeScreen").style.display = "flex";
+  updateHome();
+});
+
+/* ================= REPASO DE ERRORES ================= */
+let R = null;
+const REV_N = 10;
+function revFresh(){ return {step:"intro", queue:[], i:0, checked:false, last:null, ok:0, fixedNow:0, xp:0, total:0}; }
+function revStart(){
+  const items = weakItems().slice(0, REV_N);
+  R.queue = items.map(x=>({phase:x.phase, set:x.set, idx:x.idx, retry:false}));
+  R.total = items.length; R.i = 0; R.checked = false; R.last = null; R.ok = 0; R.fixedNow = 0; R.xp = 0;
+  R.step = R.total ? "q" : "intro"; revRender();
+}
+function revCheck(){
+  if(!R || R.step !== "q" || R.checked) return;
+  const cur = R.queue[R.i], row = DATA[cur.phase][cur.set][cur.idx];
+  const inp = $("rInput"), typed = inp ? inp.value.trim().slice(0,200) : "";
+  if(!typed){ const m = $("rMsg"); if(m) m.textContent = "✍️ Escribe tu respuesta primero."; if(inp) inp.focus(); return; }
+  const ok = simGrade(cur.set, row[0], typed);
+  touchDay();
+  let fixed = false;
+  if(ok){
+    fixed = recordResult(cur.phase, cur.set, row[0], true, cur.retry ? 1 : 2);
+    P.mastered[mkey(cur.phase, cur.set, row[0])] = 1;
+    R.ok++; R.xp += 6; if(fixed) R.fixedNow++;
+    addXP(6); bumpDaily();
+  } else {
+    recordResult(cur.phase, cur.set, row[0], false, 0);
+    if(!cur.retry){ R.queue.push({phase:cur.phase, set:cur.set, idx:cur.idx, retry:true}); }
+  }
+  R.checked = true; R.last = {ok:ok, typed:typed, fixed:fixed};
+  saveProgress(); checkPrizes(); revRender();
+}
+function revNext(){
+  if(!R || !R.checked) return;
+  R.i++; R.checked = false; R.last = null;
+  if(R.i >= R.queue.length){ revFinish(); } else { revRender(); }
+}
+function revFinish(){
+  touchDay(); R.xp += 10; addXP(10);
+  R.step = "result"; saveProgress(); checkPrizes(); syncNow(true);
+  revRender();
+  if(R.fixedNow > 0) confetti();
+}
+function revRender(){
+  const root = $("rRoot"); if(!R) return;
+  let h = "";
+  const wn = weakCount();
+  if(R.step === "intro"){
+    if(wn === 0){
+      h = '<h1 class="shead">🔁 Repasar mis errores</h1><div class="sub">Aquí practicas solo lo que has fallado</div>'+
+          '<div class="homecard dsel"><div class="cresult" style="padding:10px 6px"><div class="bigemoji">🎉</div><div class="greet">¡No tienes errores pendientes! Sigue practicando en Tarjetas, Pizarra, Quiz o Simulacro. Si fallas algo, aparecerá aquí.</div></div>'+
+          '<button class="ghostbtn" data-r="home">🏠 Volver al inicio</button></div>';
+    } else {
+      h = '<h1 class="shead">🔁 Repasar mis errores</h1><div class="sub">Practica solo lo que has fallado</div>'+
+          '<div class="homecard dsel"><ul class="slist">'+
+          '<li>Tienes <b>'+wn+'</b> '+(wn === 1 ? "ítem" : "ítems")+' por repasar. Se repasan hasta <b>'+REV_N+'</b> por ronda, los más difíciles primero.</li>'+
+          '<li>Escribe la respuesta y toca <b>Comprobar</b>. Verás enseguida si acertaste.</li>'+
+          '<li>Si fallas, el ítem vuelve a salir al final de la ronda.</li>'+
+          '<li>Ganas <b>6 XP</b> por cada acierto y <b>10 XP</b> por terminar.</li>'+
+          '</ul><button class="startbtn" data-r="start">¡Empezar repaso!</button></div>';
+    }
+  } else if(R.step === "q"){
+    const cur = R.queue[R.i], row = DATA[cur.phase][cur.set][cur.idx], isS = cur.set === "sentences";
+    h = '<div class="cmeta"><span>'+D_PHASES[cur.phase]+'</span><span>Ítem '+(R.i+1)+' de '+R.queue.length+' · '+(isS ? "Oración" : "Palabra")+(cur.retry ? " · otro intento" : "")+'</span></div>'+
+        '<div class="ccard"><div class="cipa'+(isS ? " sent" : (row[1].length > 22 ? " long" : ""))+'">'+esc(fixIpaWrap(row[1]))+'</div></div>'+
+        '<div style="margin-top:14px"><input type="text" id="rInput" class="dinput" placeholder="'+(isS ? "Escribe la oración completa…" : "Escribe la palabra…")+'" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"'+(R.checked ? ' disabled value="'+esc(R.last.typed)+'"' : '')+'>'+
+        '<div class="feedback'+(R.checked ? (R.last.ok ? " good" : " bad") : "")+'" id="rMsg" style="margin-top:10px">'+
+        (R.checked ? (R.last.ok ? "✅ ¡Correcto! "+esc(row[0])+(R.last.fixed ? " · 🛠️ ¡Error corregido!" : "") : "❌ Era: "+esc(row[0])+(cur.retry ? "" : " · Volverá a salir al final.")) : "")+'</div>'+
+        (R.checked ? '<button class="startbtn" data-r="next" style="margin-top:10px">'+(R.i+1 >= R.queue.length ? "Terminar ✔" : "Siguiente ➜")+'</button>'
+                   : '<button class="startbtn" data-r="check" style="margin-top:10px">Comprobar</button>')+'</div>';
+  } else {
+    const remain = weakCount();
+    const em = R.fixedNow >= R.total ? "🏆" : R.fixedNow > 0 ? "🛠️" : "💪";
+    h = '<div class="cresult"><div class="bigemoji">'+em+'</div><h2>Corregiste '+R.fixedNow+' de '+R.total+'</h2>'+
+        '<div class="greet">'+(R.fixedNow > 0 ? "¡Buen trabajo! Cada error corregido te acerca al podio." : "Esos ítems aún se resisten. Repásalos otra vez, ¡tú puedes!")+'</div></div>'+
+        '<div class="dnote" style="margin:0 0 6px">Ganaste <b>+'+R.xp+' XP</b> · Te quedan <b>'+remain+'</b> por repasar</div>'+
+        (remain > 0 ? '<button class="startbtn" data-r="again" style="margin-top:14px">🔁 Otra ronda de repaso</button>' : '')+
+        '<button class="ghostbtn" data-r="home" style="margin-top:10px">🏠 Volver al inicio</button>';
+  }
+  root.innerHTML = h;
+  if(R.step === "q" && !R.checked){ const i = $("rInput"); if(i) i.focus(); }
+  window.scrollTo(0,0);
+}
+$("rRoot").addEventListener("click", e=>{
+  const b = e.target.closest("[data-r]"); if(!b || !R) return;
+  const a = b.dataset.r;
+  if(a === "start" || a === "again"){ revStart(); }
+  else if(a === "check"){ revCheck(); }
+  else if(a === "next"){ revNext(); }
+  else if(a === "home"){ $("rBack").click(); }
+});
+$("rRoot").addEventListener("keydown", e=>{
+  if(e.key !== "Enter") return;
+  if(e.target.id === "rInput") revCheck();
+});
+$("revBtn").addEventListener("click", ()=>{
+  if(!ensureRegistered()) return;
+  saveProgress(); syncNow(true);
+  R = revFresh();
+  $("homeScreen").style.display = "none";
+  $("revScreen").style.display = "block";
+  if(weakCount() > 0){ revStart(); } else { revRender(); }
+});
+$("rBack").addEventListener("click", ()=>{
+  R = null;
+  $("revScreen").style.display = "none";
   $("homeScreen").style.display = "flex";
   updateHome();
 });
@@ -1525,6 +1726,7 @@ function dSubmit(auto){
   const ms = auto ? D.cfg.secs*1000 : Date.now() - D.t0;
   const ok = dGrade(D.cfg.phase, D.cfg.seq[i], typed);
   D.my[i] = {ok, ms, txt:typed.trim().slice(0,60)};
+  try{ recordResult(D.cfg.phase, "words", DATA[D.cfg.phase].words[D.cfg.seq[i]][0], ok, 1); saveProgress(); }catch(e){}
   if(D.timer){ clearInterval(D.timer); D.timer = null; }
   dSend({t:"ans", i, ok, ms, txt:D.my[i].txt});
   if(inp) inp.disabled = true;
@@ -1666,7 +1868,7 @@ let lastAct = Date.now(), hb = 0;
 ["click","keydown","input","touchstart"].forEach(ev=>document.addEventListener(ev, ()=>{ lastAct = Date.now(); }, {passive:true}));
 setInterval(()=>{
   if(document.hidden || Date.now() - lastAct > 60000) return;
-  if($("studyScreen").style.display !== "block" && $("duelScreen").style.display !== "block" && $("simScreen").style.display !== "block") return;
+  if($("studyScreen").style.display !== "block" && $("duelScreen").style.display !== "block" && $("simScreen").style.display !== "block" && $("revScreen").style.display !== "block") return;
   P.minutes = (P.minutes||0) + 0.25;
   if(++hb % 4 === 0) saveProgress();
 }, 15000);
